@@ -1,0 +1,69 @@
+HELP.md
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Spring Tool Suite
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# Development Environment Settings (IntelliJ IDEA, NetBeans, VS Code)
+.idea/
+*.iws
+*.iml
+*.ipr
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+.vscode/
+
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+tmp/
+temp/
+cache/
+
+# Directories with libraries and assemblies
+node_modules/
+build/
+target/
+out/
+
+# Build system configuration files and generated data
+dist/
+bin/
+obj/
+.gradle/
+*.class
+*.jar
+*.war
+
+# Windows System Configuration File
+desktop.ini

@@ -48,11 +48,12 @@ public class Main {
             logger.error("Error serializing City object to XML.\n{}", e.getMessage());
 
         } catch (NoSuchFileException e) {
-            logger.error("The file '{}' does not exist. Check the file path.", fileName);
+            logger.error("The file '{}' does not exist. Check the file path.\n{}",
+                    fileName, e.getMessage());
 
         } catch (IOException e) {
-            logger.error("Error reading the file '{}'. Check if the file exists and the file path is correct.",
-                    fileName);
+            logger.error("Error reading the file '{}'. Check if the file exists and the file path is correct.\n{}",
+                    fileName, e.getMessage());
         }
     }
 }

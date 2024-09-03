@@ -1,20 +1,15 @@
 package org.tbank.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 import lombok.ToString;
-import lombok.EqualsAndHashCode;
 import lombok.AllArgsConstructor;
 
 
-@ToString
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 public class City {
 
     private String slug;
@@ -24,12 +19,9 @@ public class City {
     private Coordinates coordinates;
 
 
-    @ToString
-    @Getter
-    @Setter
     @NoArgsConstructor
     @AllArgsConstructor
-    @EqualsAndHashCode
+    @Data
     public static class Coordinates {
 
         @JsonProperty("lat")

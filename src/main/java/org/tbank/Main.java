@@ -41,19 +41,19 @@ public class Main {
             Parser.writeXmlToFile(filePathForSave, city);
 
         } catch (JsonParseException e) {
-            logger.error("An error occurred while parsing JSON. Check the {} file for invalid characters.\n{}",
-                    fileName, e.getMessage());
+            logger.error("An error occurred while parsing JSON. Check the {} file for invalid characters.",
+                    fileName, e);
 
         } catch (JsonProcessingException e) {
-            logger.error("Error serializing City object to XML.\n{}", e.getMessage());
+            logger.error("Error serializing City object to XML.", e);
 
         } catch (NoSuchFileException e) {
-            logger.error("The file '{}' does not exist. Check the file path.\n{}",
-                    fileName, e.getMessage());
+            logger.error("The file '{}' does not exist. Check the file path.",
+                    fileName, e);
 
         } catch (IOException e) {
-            logger.error("Error reading the file '{}'. Check if the file exists and the file path is correct.\n{}",
-                    fileName, e.getMessage());
+            logger.error("Error reading the file '{}'. Check if the file exists and the file path is correct.",
+                    fileName, e);
         }
     }
 }

@@ -1,8 +1,8 @@
 HELP.md
 .gradle
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+!src/main/**/build/
+!src/test/**/build/
 
 # Spring Tool Suite
 .apt_generated
@@ -13,16 +13,16 @@ HELP.md
 .springBeans
 .sts4-cache
 
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+!src/main/**/bin/
+!src/test/**/bin/
 
 # Development Environment Settings (IntelliJ IDEA, NetBeans, VS Code)
 .idea/
 *.iws
 *.iml
 *.ipr
-!**/src/main/**/out/
-!**/src/test/**/out/
+!src/main/**/out/
+!src/test/**/out/
 
 /nbproject/private/
 /nbbuild/
@@ -67,3 +67,6 @@ obj/
 
 # Windows System Configuration File
 desktop.ini
+
+# Ignore Gradle build output directory
+build

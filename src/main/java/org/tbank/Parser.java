@@ -42,7 +42,7 @@ public class Parser {
             logger.info("XML has been successfully saved to file: {}", filePath);
 
         } catch (IOException e) {
-            logger.error("Failed to save the contents to file: '{}'.\n{}", filePath, e.getMessage());
+            logger.error("Failed to save the contents to file: '{}'.", filePath, e);
         }
     }
 

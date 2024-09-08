@@ -46,22 +46,23 @@ public class CustomLinkedList<T> {
 
         if (isEmpty()) {
             head = elementNode;
-            tail = elementNode;
-
-            elementNode.previous = null; // ?
-            elementNode.next = null; // ?
 
         } else {
             tail.next = elementNode;
             elementNode.previous = tail;
-            tail = elementNode;
         }
 
+        tail = elementNode;
         size++;
     }
 
 
     public T get(int index) {
+        return getNode(index).element;
+    }
+
+
+    private Node<T> getNode(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
@@ -72,14 +73,12 @@ public class CustomLinkedList<T> {
             result = result.next;
         }
 
-        return result.element;
+        return result;
     }
 
 
     public void remove(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException();
-        }
+        Node<T> current = getNode(index); // тут будет проверка на IndexOutOfBoundsException()
 
         if (index == 0) {
             head = head.next;
@@ -89,21 +88,11 @@ public class CustomLinkedList<T> {
                 tail = null;
             }
 
-        } else if (index == size -1) {
+        } else if (index == size - 1) {
             tail = tail.previous;
-            if (tail != null) {
-                tail.next = null;
-            } else {
-                head = null;
-            }
+            tail.next = null;
 
         } else {
-            Node<T> current = head;
-
-            for (int i = 0; i < index; i++) {
-                current = current.next;
-            }
-
             current.previous.next = current.next;
             current.next.previous = current.previous;
         }

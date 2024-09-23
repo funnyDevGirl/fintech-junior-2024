@@ -17,14 +17,13 @@ public class LocationController {
 
     private final LocationService service;
 
-
     @GetMapping(path = "")
     @ResponseStatus(HttpStatus.OK)
     public List<LocationDTO> index() {
         return service.getAll();
     }
 
-    @GetMapping(path = "/id")
+    @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public LocationDTO show(@PathVariable Long id) {
         return service.findById(id);
@@ -36,14 +35,14 @@ public class LocationController {
         return service.create(locationCreateDTO);
     }
 
-    @PutMapping(path = "/id")
+    @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public LocationDTO update(@RequestBody LocationUpdateDTO locationUpdateDTO,
                               @PathVariable Long id) {
         return service.update(locationUpdateDTO, id);
     }
 
-    @DeleteMapping(path = "/id")
+    @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);

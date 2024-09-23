@@ -24,11 +24,14 @@ public class LocationService {
     private String apiUrl;
 
     private final LocationMapper mapper;
-    private final LocationRepository repository = new LocationRepository();
+    private final LocationRepository repository;
     private final RestTemplate restTemplate;
     private static final Logger logger = LoggerFactory.getLogger(LocationService.class);
 
-    public LocationService(LocationMapper mapper, RestTemplate restTemplate) {
+    public LocationService(LocationRepository repository,
+                           LocationMapper mapper,
+                           RestTemplate restTemplate) {
+        this.repository = repository;
         this.mapper = mapper;
         this.restTemplate = restTemplate;
     }

@@ -23,9 +23,10 @@ public class CategoryController {
         return service.getAll();
     }
 
-    @GetMapping(path = "/id")
+    @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CategoryDTO show(@PathVariable Long id) {
+
         return service.findById(id);
     }
 
@@ -35,14 +36,14 @@ public class CategoryController {
         return service.create(categoryCreateDTO);
     }
 
-    @PutMapping(path = "/id")
+    @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CategoryDTO update(@RequestBody CategoryUpdateDTO categoryUpdateDTO,
                               @PathVariable Long id) {
         return service.update(categoryUpdateDTO, id);
     }
 
-    @DeleteMapping(path = "/id")
+    @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);

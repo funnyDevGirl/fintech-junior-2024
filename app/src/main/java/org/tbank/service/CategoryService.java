@@ -24,11 +24,14 @@ public class CategoryService {
     private String apiUrl;
 
     private final CategoryMapper mapper;
-    private final CategoryRepository repository = new CategoryRepository();
+    private final CategoryRepository repository;
     private final RestTemplate restTemplate;
     private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
 
-    public CategoryService(CategoryMapper mapper, RestTemplate restTemplate) {
+    public CategoryService(CategoryRepository repository,
+                           CategoryMapper mapper,
+                           RestTemplate restTemplate) {
+        this.repository = repository;
         this.mapper = mapper;
         this.restTemplate = restTemplate;
     }
@@ -65,6 +68,7 @@ public class CategoryService {
     }
 
     public void delete(Long id) {
+        logger.info("Deleting category with ID: {}", id);
         repository.deleteById(id);
     }
 

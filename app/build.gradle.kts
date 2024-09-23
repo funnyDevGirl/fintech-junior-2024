@@ -55,6 +55,7 @@ dependencies {
     implementation("ch.qos.logback:logback-core:1.5.8")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.17.2")
+    testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("com.h2database:h2")
 }

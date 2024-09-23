@@ -1,11 +1,16 @@
 package org.tbank.repository;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.tbank.model.Location;
-
 import java.util.Optional;
 
-@Component
+
+@Repository
 public class LocationRepository extends SimpleRepository<Location> {
-    // можно добавить доп. методы, специфичные для Location
+
+    public Optional<Location> findBySlug(String slug) {
+        return storage.values().stream()
+                .filter(entity -> entity.getSlug() != null && entity.getSlug().equals(slug))
+                .findFirst();
+    }
 }

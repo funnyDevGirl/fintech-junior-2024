@@ -1,0 +1,24 @@
+---
+
+spring:
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+  output:
+    ansi:
+      enabled: always
+  sql:
+    init:
+      mode: always
+  profiles:
+    default: dev
+
+logging:
+  level:
+    root: INFO
+
+locations-url: "https://kudago.com/public-api/v1.4/locations/"
+categories-url: "https://kudago.com/public-api/v1.2/place-categories/"

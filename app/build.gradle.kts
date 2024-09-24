@@ -40,10 +40,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
-    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
-
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
@@ -56,8 +52,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.17.2")
     testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
-    runtimeOnly("org.postgresql:postgresql")
-    runtimeOnly("com.h2database:h2")
+    implementation(project(":logging-starter"))
 }
 
 tasks.withType<Test>() {

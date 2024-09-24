@@ -1,20 +1,10 @@
 ---
 
 spring:
-  jpa:
-    generate-ddl: true
-    show-sql: true
-    hibernate:
-      ddl-auto: create
 
   output:
     ansi:
       enabled: always
-  sql:
-    init:
-      mode: always
-  profiles:
-    default: dev
 
 logging:
   level:

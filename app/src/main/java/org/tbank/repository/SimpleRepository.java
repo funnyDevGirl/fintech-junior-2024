@@ -3,6 +3,7 @@ package org.tbank.repository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.tbank.annotation.LogExecutionTime;
 import org.tbank.model.Identifiable;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,9 @@ public class SimpleRepository<T extends Identifiable<Long>> {
         return Optional.ofNullable(storage.get(id));
     }
 
+    // фактическая инициация хранилища в виде объекта ConcurrentHashMap происходит при создании SimpleRepository,
+    // а заполнение — через метод save
+    @LogExecutionTime
     public void save(T entity) {
         if (entity.getId() == null) {
             entity.setId(idGenerator.getAndIncrement()); // Устанавливаю уникальный ID

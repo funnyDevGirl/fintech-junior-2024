@@ -27,9 +27,9 @@ public class CategoryController {
 
     private final CategoryService service;
 
-    @GetMapping(path = "")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<CategoryDTO> index() {
+    public List<CategoryDTO> getAll() {
         return service.getAll();
     }
 
@@ -40,7 +40,7 @@ public class CategoryController {
         return service.findById(id);
     }
 
-    @PostMapping(path = "")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDTO create(@RequestBody CategoryCreateDTO categoryCreateDTO) {
         return service.create(categoryCreateDTO);

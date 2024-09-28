@@ -1,5 +1,6 @@
 package org.tbank.component;
 
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationArguments;
@@ -19,26 +20,17 @@ import java.util.List;
 
 
 @Component
+@RequiredArgsConstructor
 public class DataInitializer implements ApplicationRunner {
 
-    private final LocationRepository locationRepository = new LocationRepository();
-    private final CategoryRepository categoryRepository = new CategoryRepository();
     private static final Logger logger = LoggerFactory.getLogger(DataInitializer.class);
-
+    private final LocationRepository locationRepository;
+    private final CategoryRepository categoryRepository;
     private final LocationService locationService;
     private final CategoryService categoryService;
     private final LocationMapper locationMapper;
     private final CategoryMapper categoryMapper;
 
-    public DataInitializer(LocationMapper locationMapper,
-                           CategoryMapper categoryMapper,
-                           LocationService locationService,
-                           CategoryService categoryService) {
-        this.locationMapper = locationMapper;
-        this.categoryMapper = categoryMapper;
-        this.locationService = locationService;
-        this.categoryService = categoryService;
-    }
 
     @Override
     public void run(ApplicationArguments args) {

@@ -27,9 +27,9 @@ public class LocationController {
 
     private final LocationService service;
 
-    @GetMapping(path = "")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<LocationDTO> index() {
+    public List<LocationDTO> getAll() {
         return service.getAll();
     }
 
@@ -39,7 +39,7 @@ public class LocationController {
         return service.findById(id);
     }
 
-    @PostMapping(path = "")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public LocationDTO create(@RequestBody LocationCreateDTO locationCreateDTO) {
         return service.create(locationCreateDTO);

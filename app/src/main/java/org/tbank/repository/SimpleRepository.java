@@ -2,7 +2,6 @@ package org.tbank.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
 import org.tbank.annotation.LogExecutionTime;
 import org.tbank.model.Identifiable;
 import java.util.ArrayList;
@@ -12,8 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 
-@Repository
-public class SimpleRepository<T extends Identifiable<Long>> {
+abstract class SimpleRepository<T extends Identifiable<Long>> {
 
     final ConcurrentHashMap<Long, T> storage = new ConcurrentHashMap<>();
     private final AtomicLong idGenerator = new AtomicLong(1);

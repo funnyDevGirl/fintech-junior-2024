@@ -1,5 +1,6 @@
 package org.tbank.service;
 
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class CategoryService {
 
     @Value("${categories-url}")
@@ -27,14 +29,6 @@ public class CategoryService {
     private final CategoryRepository repository;
     private final RestTemplate restTemplate;
     private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
-
-    public CategoryService(CategoryRepository repository,
-                           CategoryMapper mapper,
-                           RestTemplate restTemplate) {
-        this.repository = repository;
-        this.mapper = mapper;
-        this.restTemplate = restTemplate;
-    }
 
 
     public List<CategoryDTO> getAll() {

@@ -37,10 +37,10 @@ public class DataInitializerTest {
     private CategoryService categoryService;
 
     @Mock
-    private LocationRepository locationRepository = new LocationRepository();
+    private LocationRepository locationRepository ;
 
     @Mock
-    private CategoryRepository categoryRepository = new CategoryRepository();
+    private CategoryRepository categoryRepository;
 
     @Mock
     private LocationMapper locationMapper;
@@ -54,12 +54,12 @@ public class DataInitializerTest {
     @InjectMocks
     private DataInitializer dataInitializer;
 
-    LogCaptor logCaptor = LogCaptor.forClass(DataInitializerTest.class);
 
     @BeforeEach
     void setUp() {
         locationService = mock(LocationService.class);
-        dataInitializer = new DataInitializer(locationMapper, categoryMapper, locationService, categoryService);
+        dataInitializer = new DataInitializer(locationRepository, categoryRepository,
+                locationService, categoryService, locationMapper, categoryMapper);
     }
 
     @AfterEach
@@ -72,7 +72,6 @@ public class DataInitializerTest {
     void testInitLocationsSuccess() {
         LocationCreateDTO locationDTO = new LocationCreateDTO("slug", "name");
         Location location = new Location(null, "slug", "name");
-        locationRepository.save(location);
 
         when(locationService.fetchLocations()).thenReturn(List.of(locationDTO));
         when(locationMapper.map(locationDTO)).thenReturn(location);
@@ -89,7 +88,6 @@ public class DataInitializerTest {
     void testInitCategoriesSuccess() {
         CategoryCreateDTO categoryDTO = new CategoryCreateDTO("slug", 200L, "name");
         Category category = new Category(null, 200L, "slug", "name");
-        categoryRepository.save(category);
 
         when(categoryService.fetchCategories()).thenReturn(List.of(categoryDTO));
         when(categoryMapper.map(categoryDTO)).thenReturn(category);

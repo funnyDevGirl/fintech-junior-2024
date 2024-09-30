@@ -1,0 +1,14 @@
+---
+
+spring:
+
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    root: INFO
+
+locations-url: "https://kudago.com/public-api/v1.4/locations/"
+categories-url: "https://kudago.com/public-api/v1.2/place-categories/"

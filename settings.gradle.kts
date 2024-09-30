@@ -7,3 +7,5 @@
  */
 
 rootProject.name = "fintech-2024"
+include("app")
+include("logging-starter")

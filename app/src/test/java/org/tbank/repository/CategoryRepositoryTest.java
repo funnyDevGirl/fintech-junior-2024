@@ -17,7 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class CategoryRepositoryTest {
 
-    private final CategoryRepository repository = new CategoryRepository();
+    @Autowired
+    private CategoryRepository repository;
 
     @Autowired
     private CategoryMapper mapper;

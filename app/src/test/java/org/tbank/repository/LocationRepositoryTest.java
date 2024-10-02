@@ -17,7 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class LocationRepositoryTest {
 
-    private final LocationRepository repository = new LocationRepository();
+    @Autowired
+    private LocationRepository repository;
 
     @Autowired
     private LocationMapper mapper;

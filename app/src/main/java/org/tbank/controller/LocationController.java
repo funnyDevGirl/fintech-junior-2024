@@ -1,5 +1,6 @@
 package org.tbank.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,13 +42,13 @@ public class LocationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public LocationDTO create(@RequestBody LocationCreateDTO locationCreateDTO) {
+    public LocationDTO create(@Valid @RequestBody LocationCreateDTO locationCreateDTO) {
         return service.create(locationCreateDTO);
     }
 
     @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public LocationDTO update(@RequestBody LocationUpdateDTO locationUpdateDTO,
+    public LocationDTO update(@Valid @RequestBody LocationUpdateDTO locationUpdateDTO,
                               @PathVariable Long id) {
         return service.update(locationUpdateDTO, id);
     }

@@ -3,34 +3,21 @@ package org.tbank.repository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openapitools.jackson.nullable.JsonNullable;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.tbank.dto.locations.LocationCreateDTO;
-import org.tbank.dto.locations.LocationUpdateDTO;
-import org.tbank.mapper.LocationMapper;
 import org.tbank.model.Location;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@SpringBootTest
 class LocationRepositoryTest {
 
-    @Autowired
     private LocationRepository repository;
-
-    @Autowired
-    private LocationMapper mapper;
-
     private Location testLocation;
-
 
     @BeforeEach
     public void setUp() {
-        LocationCreateDTO createDTO = new LocationCreateDTO("testSlug", "testName");
-        testLocation = mapper.map(createDTO);
+        repository = new LocationRepository();
 
+        testLocation = new Location(1L, "testSlug", "testName");
         repository.save(testLocation);
     }
 
@@ -64,9 +51,7 @@ class LocationRepositoryTest {
 
     @Test
     void testCreate() {
-        LocationCreateDTO createDTO = new LocationCreateDTO("new-slug", "New name");
-        Location location = mapper.map(createDTO);
-
+        Location location = new Location(2L, "new-slug", "New name");
         repository.save(location);
 
         Location result = repository.findById(location.getId()).orElseThrow();
@@ -78,10 +63,7 @@ class LocationRepositoryTest {
 
     @Test
     void testUpdate() {
-        LocationUpdateDTO updateDTO = new LocationUpdateDTO();
-        updateDTO.setSlug(JsonNullable.of("updated-slug"));
-
-        mapper.update(updateDTO, testLocation);
+        testLocation.setSlug("updated-slug");
         repository.save(testLocation);
 
         Location result = repository.findById(testLocation.getId()).orElseThrow();

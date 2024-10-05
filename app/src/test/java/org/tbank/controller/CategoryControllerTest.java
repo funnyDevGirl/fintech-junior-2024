@@ -13,6 +13,8 @@ import org.tbank.dto.categories.CategoryCreateDTO;
 import org.tbank.mapper.CategoryMapper;
 import org.tbank.model.Category;
 import org.tbank.repository.CategoryRepository;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Testcontainers;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -24,6 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Testcontainers
 public class CategoryControllerTest {
 
     @Autowired
@@ -37,6 +40,16 @@ public class CategoryControllerTest {
 
     @Autowired
     private CategoryMapper mapper;
+
+    private static final PostgreSQLContainer<?> postgresContainer =
+            new PostgreSQLContainer<>("postgres:latest")
+                    .withDatabaseName("test_db")
+                    .withUsername("test")
+                    .withPassword("test");
+
+    static {
+        postgresContainer.start();
+    }
 
     private Category testCategory;
 
@@ -70,7 +83,14 @@ public class CategoryControllerTest {
     }
 
     @Test
-    public void testIndex() throws Exception {
+    public void testShow_NonExistent() throws Exception {
+        mockMvc.perform(get("/api/v1/places/categories/{id}", Long.MAX_VALUE))
+                .andExpect(status().isNotFound());
+    }
+
+
+    @Test
+    public void testGetAll() throws Exception {
         var result = mockMvc.perform(get("/api/v1/places/categories"))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -99,6 +119,16 @@ public class CategoryControllerTest {
     }
 
     @Test
+    public void testCreate_InvalidData() throws Exception {
+        var dto = new CategoryCreateDTO("", null, null);
+
+        mockMvc.perform(post("/api/v1/places/categories")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(dto)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     public void testUpdate() throws Exception {
         var dto = mapper.map(testCategory);
         dto.setName("Java");
@@ -113,6 +143,17 @@ public class CategoryControllerTest {
         var category = repository.findBySlug(dto.getSlug()).orElseThrow();
 
         assertThat(category.getName()).isEqualTo("Java");
+    }
+
+    @Test
+    public void testUpdate_NonExistent() throws Exception {
+        var dto = mapper.map(testCategory);
+        dto.setName("Updated Name");
+
+        mockMvc.perform(put("/api/v1/locations/{id}", Long.MAX_VALUE) // Не существующий id
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(dto)))
+                .andExpect(status().isNotFound());
     }
 
     @Test

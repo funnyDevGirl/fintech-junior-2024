@@ -3,34 +3,21 @@ package org.tbank.repository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openapitools.jackson.nullable.JsonNullable;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.tbank.dto.categories.CategoryCreateDTO;
-import org.tbank.dto.categories.CategoryUpdateDTO;
-import org.tbank.mapper.CategoryMapper;
 import org.tbank.model.Category;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@SpringBootTest
 class CategoryRepositoryTest {
 
-    @Autowired
     private CategoryRepository repository;
-
-    @Autowired
-    private CategoryMapper mapper;
-
     private Category testCategory;
-
 
     @BeforeEach
     public void setUp() {
-        CategoryCreateDTO createDTO = new CategoryCreateDTO("testSlug", 160L, "testName");
-        testCategory = mapper.map(createDTO);
+        repository = new CategoryRepository();
 
+        testCategory = new Category(1L, 160L, "testSlug", "testName");
         repository.save(testCategory);
     }
 
@@ -66,9 +53,7 @@ class CategoryRepositoryTest {
 
     @Test
     void testCreate() {
-        CategoryCreateDTO createDTO = new CategoryCreateDTO("new-slug", 200L,"New name");
-        Category category = mapper.map(createDTO);
-
+        Category category = new Category(2L, 200L, "new-slug", "New name");
         repository.save(category);
 
         Category result = repository.findById(category.getId()).orElseThrow();
@@ -81,10 +66,7 @@ class CategoryRepositoryTest {
 
     @Test
     void testUpdate() {
-        CategoryUpdateDTO updateDTO = new CategoryUpdateDTO();
-        updateDTO.setSlug(JsonNullable.of("updated-slug"));
-
-        mapper.update(updateDTO, testCategory);
+        testCategory.setSlug("updated-slug");
         repository.save(testCategory);
 
         Category result = repository.findById(testCategory.getId()).orElseThrow();

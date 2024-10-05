@@ -9,22 +9,21 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.tbank.dto.categories.CategoryCreateDTO;
 import org.tbank.dto.locations.LocationCreateDTO;
 import org.tbank.mapper.LocationMapper;
 import org.tbank.model.Location;
 import org.tbank.repository.LocationRepository;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Testcontainers;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Testcontainers
 public class LocationControllerTest {
 
     @Autowired
@@ -38,6 +37,16 @@ public class LocationControllerTest {
 
     @Autowired
     private LocationMapper mapper;
+
+    private static final PostgreSQLContainer<?> postgresContainer =
+            new PostgreSQLContainer<>("postgres:latest")
+                    .withDatabaseName("test_db")
+                    .withUsername("test")
+                    .withPassword("test");
+
+    static {
+        postgresContainer.start();
+    }
 
     private Location testLocation;
 
@@ -71,7 +80,13 @@ public class LocationControllerTest {
     }
 
     @Test
-    public void testIndex() throws Exception {
+    public void testShow_NonExistent() throws Exception {
+        mockMvc.perform(get("/api/v1/locations/{id}", Long.MAX_VALUE))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testGetAll() throws Exception {
         var result = mockMvc.perform(get("/api/v1/locations"))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -85,7 +100,7 @@ public class LocationControllerTest {
 
     @Test
     public void testCreate() throws Exception {
-        var dto = new CategoryCreateDTO("slug", 200L,"Name");
+        var dto = new LocationCreateDTO("slug","Name");
 
         mockMvc.perform(post("/api/v1/locations")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -97,6 +112,16 @@ public class LocationControllerTest {
 
         assertThat(category.getName()).isEqualTo(dto.getName());
         assertThat(category.getName()).isNotNull();
+    }
+
+    @Test
+    public void testCreate_InvalidData() throws Exception {
+        var dto = new LocationCreateDTO("", "Name"); // Пустой slug
+
+        mockMvc.perform(post("/api/v1/locations")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(dto)))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -114,6 +139,17 @@ public class LocationControllerTest {
         var category = repository.findBySlug(dto.getSlug()).orElseThrow();
 
         assertThat(category.getName()).isEqualTo("Java");
+    }
+
+    @Test
+    public void testUpdate_NonExistent() throws Exception {
+        var dto = mapper.map(testLocation);
+        dto.setName("Updated Name");
+
+        mockMvc.perform(put("/api/v1/locations/{id}", Long.MAX_VALUE) // Не существующий id
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(dto)))
+                .andExpect(status().isNotFound());
     }
 
     @Test

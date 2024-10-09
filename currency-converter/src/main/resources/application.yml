@@ -1,0 +1,59 @@
+spring:
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+  output:
+    ansi:
+      enabled: always
+
+  sql:
+    init:
+      mode: always
+  profiles:
+    default: dev
+
+  cache:
+    caffeine:
+      spec: expireAfterWrite=1h
+
+logging:
+  level:
+    root: INFO
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      CurrencyRateService:
+        registerHealthIndicator: true  # следить за состоянием Circuit Breaker через Actuator
+        slidingWindowSize: 20          # размер скользящего окна
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 50       # процент ошибок для открытого состояния
+        waitDurationInOpenState: 10000 # время ожидания в открытом состоянии (10 секунд)
+
+# включаю эндпоинты для Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+    health:
+      show-details: always
+
+  health:
+    circuitbreakers:
+      enabled: true
+
+    ratelimiters:
+      enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+
+cb-api-url: "http://www.cbr.ru/scripts/XML_daily.asp?date_req="

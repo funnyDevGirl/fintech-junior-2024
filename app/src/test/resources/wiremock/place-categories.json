@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/public-api/v1.2/place-categories"
+  },
+  "response": {
+    "status": 200,
+    "body": "[{\"name\":\"Еда\", \"slug\":\"food\"}]",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

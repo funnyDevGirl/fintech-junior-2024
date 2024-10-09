@@ -1,5 +1,6 @@
 package org.tbank.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,13 +43,13 @@ public class CategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDTO create(@RequestBody CategoryCreateDTO categoryCreateDTO) {
+    public CategoryDTO create(@Valid @RequestBody CategoryCreateDTO categoryCreateDTO) {
         return service.create(categoryCreateDTO);
     }
 
     @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CategoryDTO update(@RequestBody CategoryUpdateDTO categoryUpdateDTO,
+    public CategoryDTO update(@Valid @RequestBody CategoryUpdateDTO categoryUpdateDTO,
                               @PathVariable Long id) {
         return service.update(categoryUpdateDTO, id);
     }

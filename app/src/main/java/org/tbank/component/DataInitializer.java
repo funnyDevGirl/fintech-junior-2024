@@ -34,7 +34,11 @@ public class DataInitializer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        initLocations();
+        initCategories();
+    }
 
+    private void initLocations() {
         // init Locations
         logger.info("The initialization of locations started...");
 
@@ -67,8 +71,9 @@ public class DataInitializer implements ApplicationRunner {
         List<Location> locationResult = locationRepository.findAll();
 
         logger.info("LocationRepository contains {} locations", locationResult.size());
+    }
 
-
+    private void initCategories() {
         // init Categories
         logger.info("The initialization of categories started...");
 

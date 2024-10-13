@@ -96,3 +96,9 @@ tasks.jacocoTestReport {
         }
     )
 }
+
+tasks.register<JavaExec>("runKudagoServiceApp") {
+    classpath = sourceSets.main.get().runtimeClasspath
+    mainClass.set("org.tbank.AppApplication")
+    args("--server.port=8080")
+}

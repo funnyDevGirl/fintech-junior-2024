@@ -79,3 +79,9 @@ tasks.withType<Test>() {
         showStandardStreams = true
     }
 }
+
+tasks.register<JavaExec>("runCurrencyConverterApp") {
+    classpath = sourceSets.main.get().runtimeClasspath
+    mainClass.set("org.tbank.Application")
+    args("--server.port=8081")
+}

@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.tbank.dto.events.EventResponse;
 import org.tbank.dto.events.Price;
-import org.tbank.enums.Currency;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,7 +18,7 @@ public class Parser {
     }
 
     public Price parsePrice(String input) {
-        return new Price(getFirstNumber(input), Currency.RUB.getCode());
+        return new Price(getFirstNumber(input), "RUB");
     }
 
     private Double getFirstNumber(String input) {

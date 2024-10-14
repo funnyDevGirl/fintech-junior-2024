@@ -12,7 +12,7 @@ logging:
 
 locations-url: "https://kudago.com/public-api/v1.4/locations/"
 categories-url: "https://kudago.com/public-api/v1.2/place-categories/"
-events-url: "https://kudago.com/public-api/v1.4/events/?fields=title,slug,location,price,favorites_count&order_by=-favorites_count"
+events-url: "https://kudago.com/public-api/v1.4/events/?fields=title,slug,location,price&order_by=-favorites_count"
 converter-url: "https://localhost:8081/api/v1/currencies/convert"
 
 

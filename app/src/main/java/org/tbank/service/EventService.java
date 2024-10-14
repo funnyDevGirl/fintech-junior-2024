@@ -10,11 +10,14 @@ import org.tbank.dto.events.EventResponse;
 import org.tbank.dto.events.Price;
 import org.tbank.dto.events.convert.CurrencyConversionRequest;
 import org.tbank.dto.events.convert.CurrencyConversionResponse;
-import org.tbank.enums.Currency;
 import org.tbank.formatter.Parser;
-import java.util.concurrent.CompletableFuture;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.concurrent.CompletableFuture;
 
 
 @Slf4j
@@ -36,6 +39,7 @@ public class EventService {
 
         // CompletableFuture для получения мероприятий
         CompletableFuture<List<EventDTO>> eventsFuture = CompletableFuture.supplyAsync(() -> {
+
             String eventsUrl = buildUrl(dateFrom, dateTo);
             log.info("Full url for request: {}", eventsUrl);
 
@@ -59,18 +63,40 @@ public class EventService {
             return defineBudgetAndConvert(amount, currency);
         });
 
+        // Создаю CompletableFuture для возврата отфильтрованных мероприятий
+        CompletableFuture<List<EventDTO>> suitableEventsFuture = new CompletableFuture<>();
+
         // Объединяю два CompletableFuture
-        return eventsFuture.thenCombine(budgetFuture, (events, budget) -> {
+        eventsFuture.thenAcceptBoth(budgetFuture, (events, budget) -> {
             log.info("Budget in RUB: {}", budget);
-            return filterSuitableEvents(events, budget);
+            List<EventDTO> suitableEvents = filterSuitableEvents(events, budget);
+            log.info("{} suitable events have been found", suitableEvents.size());
+
+            // Завершение нового CompletableFuture с результатом
+            suitableEventsFuture.complete(suitableEvents);
         });
+
+        // Возвращаю CompletableFuture<List<EventDTO>>
+        return suitableEventsFuture;
     }
 
-
     private String buildUrl(String dateFrom, String dateTo) {
-        StringBuilder urlBuilder = new StringBuilder(baseUrl);
-        urlBuilder.append("&actual_since=").append(dateFrom).append("&actual_until=").append(dateTo);
-        return urlBuilder.toString();
+        // Преобразую dateFrom и dateTo
+        if (dateFrom == null) {
+            dateFrom = String.valueOf(Instant.now().getEpochSecond()); // Текущая дата
+        } else {
+            dateFrom = String.valueOf(convertDateToEpoch(dateFrom));
+        }
+        log.info("Date From in the Double type: {}", dateFrom);
+
+        if (dateTo == null) {
+            dateTo = String.valueOf(Instant.now().plus(7, ChronoUnit.DAYS).getEpochSecond()); // Дата через 7 дней
+        } else {
+            dateTo = String.valueOf(convertDateToEpoch(dateTo));
+        }
+        log.info("Date To in the Double type: {}", dateTo);
+
+        return baseUrl + "&actual_since=" + dateFrom + "&actual_until=" + dateTo;
     }
 
     private List<EventDTO> filterSuitableEvents(List<EventDTO> events, double budget) {
@@ -78,24 +104,49 @@ public class EventService {
 
         return events.stream()
                 .map(event -> {
-                    // Делаю парсинг цены и устанавливаю значение в поле price
-                    Price price = parser.parsePrice(event.getPriceTextValue());
-                    event.setPrice(price);
+                    // Делаю парсинг и устанавливаю цену в поле price
+                    try {
+                        Price price = parser.parsePrice(event.getPriceTextValue());
+                        if (price != null) {
+                            event.setMinPrice(price);
+                        } else {
+                            log.warn("The price is not available for the event: {}", event);
+                        }
+                    } catch (Exception e) {
+                        log.error("Error when parsing the price of an event: {}", event, e);
+                        event.setMinPrice(new Price(0.0, "RUB")); // значение по умолчанию
+                    }
                     return event;
                 })
-                .filter(event -> event.getPrice().getAmount() == 0.0 || event.getPrice().getAmount() <= budget)
+                .filter(event -> event.getMinPrice() != null &&
+                        (event.getMinPrice().getAmount() == 0.0 || event.getMinPrice().getAmount() <= budget))
                 .toList();
     }
 
     private double defineBudgetAndConvert(double amount, String currency) {
         log.info("The budget review begins");
-        return currency.equals(Currency.RUB.getCode()) ? amount
-                : convertCurrencyWithConverter(new CurrencyConversionRequest(currency, Currency.RUB.getCode(), amount));
+        return currency.equals("RUB") ? amount
+                : convertCurrencyWithConverter(new CurrencyConversionRequest(currency, "RUB", amount));
     }
 
     private double convertCurrencyWithConverter(CurrencyConversionRequest request) {
         log.info("A request to the Currency-Converter service begins");
+
         CurrencyConversionResponse convertedCurrency = restTemplate.postForObject(converterUrl, request, CurrencyConversionResponse.class);
-        return convertedCurrency.getConvertedAmount();
+        log.info("The Currency Conversion service sent the following response: {}", convertedCurrency);
+
+        if (convertedCurrency != null) {
+            return convertedCurrency.getConvertedAmount();
+
+        } else {
+            log.error("The Currency Conversion service did not return a response. Check your details or try again later.");
+            throw new IllegalArgumentException("Incorrect data was transmitted for conversion.");
+        }
+    }
+
+    private Long convertDateToEpoch(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        return localDate.atStartOfDay(ZoneOffset.UTC).toEpochSecond(); // Получаю timestamp
     }
 }

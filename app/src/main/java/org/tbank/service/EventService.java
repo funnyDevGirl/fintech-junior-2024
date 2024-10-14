@@ -4,20 +4,20 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.tbank.dto.events.EventDTO;
 import org.tbank.dto.events.EventResponse;
 import org.tbank.dto.events.Price;
 import org.tbank.dto.events.convert.CurrencyConversionRequest;
 import org.tbank.dto.events.convert.CurrencyConversionResponse;
 import org.tbank.formatter.Parser;
+import reactor.core.publisher.Mono;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 
 @Slf4j
@@ -31,53 +31,50 @@ public class EventService {
     @Value("${converter-url}")
     private String converterUrl;
 
-    private final RestTemplate restTemplate;
+    private final WebClient webClient;
     private final Parser parser;
 
-    public CompletableFuture<List<EventDTO>> fetchEvents(String dateFrom, String dateTo, double amount, String currency) {
+
+    public Mono<List<EventDTO>> fetchEvents(String dateFrom, String dateTo, double amount, String currency) {
         log.info("The beginning of receiving events from the Kudago service");
 
-        // CompletableFuture для получения мероприятий
-        CompletableFuture<List<EventDTO>> eventsFuture = CompletableFuture.supplyAsync(() -> {
+        // Получаем URL
+        String eventsUrl = buildUrl(dateFrom, dateTo);
+        log.info("Full url for request: {}", eventsUrl);
 
-            String eventsUrl = buildUrl(dateFrom, dateTo);
-            log.info("Full url for request: {}", eventsUrl);
+        // Mono для получения мероприятий
+        Mono<List<EventDTO>> eventsMono = webClient.get()
+                .uri(eventsUrl)
+                .retrieve()
+                .bodyToMono(String.class)
+                .flatMap(contentWithEventsFromApi -> {
+                    log.info("Response from API: {}", contentWithEventsFromApi);
+                    try {
+                        EventResponse eventsFromContent = parser.parseJson(contentWithEventsFromApi);
+                        log.info("Parsed response from API: {}", eventsFromContent);
+                        return Mono.justOrEmpty(eventsFromContent != null ? eventsFromContent.getEvents() : List.of());
+                    } catch (Exception e) {
+                        log.error("Failed to parse the content from Kudago", e);
+                        return Mono.error(e);
+                    }
+                });
 
-            String contentWithEventsFromApi = restTemplate.getForObject(eventsUrl, String.class);
-            log.info("Response from API: {}", contentWithEventsFromApi);
-
-            try {
-                EventResponse eventsFromContent = parser.parseJson(contentWithEventsFromApi);
-                log.info("Parsed response from API: {}", eventsFromContent);
-                return eventsFromContent != null ? eventsFromContent.getEvents() : List.of();
-
-            } catch (Exception e) {
-                log.error("Failed to parse the content from Kudago", e);
-                return List.of();
-            }
-        });
-
-        // CompletableFuture для конвертации бюджета
-        CompletableFuture<Double> budgetFuture = CompletableFuture.supplyAsync(() -> {
+        // Mono для конвертации бюджета
+        Mono<Double> budgetMono = Mono.fromSupplier(() -> {
             log.info("Client's budget: {} {}", amount, currency);
             return defineBudgetAndConvert(amount, currency);
         });
 
-        // Создаю CompletableFuture для возврата отфильтрованных мероприятий
-        CompletableFuture<List<EventDTO>> suitableEventsFuture = new CompletableFuture<>();
-
-        // Объединяю два CompletableFuture
-        eventsFuture.thenAcceptBoth(budgetFuture, (events, budget) -> {
-            log.info("Budget in RUB: {}", budget);
-            List<EventDTO> suitableEvents = filterSuitableEvents(events, budget);
-            log.info("{} suitable events have been found", suitableEvents.size());
-
-            // Завершение нового CompletableFuture с результатом
-            suitableEventsFuture.complete(suitableEvents);
-        });
-
-        // Возвращаю CompletableFuture<List<EventDTO>>
-        return suitableEventsFuture;
+        // Соединяем оба Mono, фильтруем подходящие мероприятия
+        return Mono.zip(eventsMono, budgetMono)
+                .flatMap(tuple -> {
+                    List<EventDTO> events = tuple.getT1();
+                    double budget = tuple.getT2();
+                    log.info("Budget in RUB: {}", budget);
+                    List<EventDTO> suitableEvents = filterSuitableEvents(events, budget);
+                    log.info("{} suitable events have been found", suitableEvents.size());
+                    return Mono.just(suitableEvents);
+                });
     }
 
     private String buildUrl(String dateFrom, String dateTo) {
@@ -131,13 +128,17 @@ public class EventService {
 
     private double convertCurrencyWithConverter(CurrencyConversionRequest request) {
         log.info("A request to the Currency-Converter service begins");
+        CurrencyConversionResponse convertedCurrency = webClient.post()
+                .uri(converterUrl)
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(CurrencyConversionResponse.class)
+                .block();
 
-        CurrencyConversionResponse convertedCurrency = restTemplate.postForObject(converterUrl, request, CurrencyConversionResponse.class);
         log.info("The Currency Conversion service sent the following response: {}", convertedCurrency);
 
         if (convertedCurrency != null) {
             return convertedCurrency.getConvertedAmount();
-
         } else {
             log.error("The Currency Conversion service did not return a response. Check your details or try again later.");
             throw new IllegalArgumentException("Incorrect data was transmitted for conversion.");

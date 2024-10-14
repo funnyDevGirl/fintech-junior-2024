@@ -65,6 +65,8 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.26.3")
     implementation("org.postgresql:postgresql:42.7.4")
     testImplementation("javax.servlet:javax.servlet-api:4.0.1")
+
+    implementation("org.springframework:spring-webflux:6.1.13")
 }
 
 tasks.withType<Test>() {

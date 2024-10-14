@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.tbank.dto.events.EventDTO;
 import org.tbank.service.EventService;
+import reactor.core.publisher.Mono;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/v1/events")
@@ -17,7 +17,7 @@ public class EventController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public CompletableFuture<List<EventDTO>> getEvents(
+    public Mono<List<EventDTO>> getEvents(
             @RequestParam(value = "dateFrom", required = false) String dateFrom,
             @RequestParam(value = "dateTo", required = false) String dateTo,
             @RequestParam(value = "budget") double budget,

@@ -1,6 +1,5 @@
 package org.tbank.dto.events;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,8 +22,12 @@ public class EventDTO {
     private Location location;
 
     @JsonProperty("price")
-    private String priceTextValue;  // временный тип String для парсинга
+    private String price;
 
-    @JsonIgnore
-    private Price minPrice; // получаю из класса Parser parsePrice(priceTextValue)
+    public EventDTO(String title, String slug, Location location, String price) {
+        this.title = title;
+        this.slug = slug;
+        this.location = location;
+        this.price = price;
+    }
 }

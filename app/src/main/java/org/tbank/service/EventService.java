@@ -7,11 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.tbank.dto.events.EventDTO;
 import org.tbank.dto.events.EventResponse;
-import org.tbank.dto.events.Price;
 import org.tbank.dto.events.convert.CurrencyConversionRequest;
 import org.tbank.dto.events.convert.CurrencyConversionResponse;
-import org.tbank.formatter.Parser;
+import org.tbank.formatter.JsonParser;
+import org.tbank.formatter.PriceParser;
 import reactor.core.publisher.Mono;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
@@ -32,10 +33,10 @@ public class EventService {
     private String converterUrl;
 
     private final WebClient webClient;
-    private final Parser parser;
+    private final JsonParser parser;
 
 
-    public Mono<List<EventDTO>> fetchEvents(String dateFrom, String dateTo, double amount, String currency) {
+    public Mono<List<EventDTO>> fetchEvents(String dateFrom, String dateTo, BigDecimal amount, String currency) {
         log.info("The beginning of receiving events from the Kudago service");
 
         // Получаем URL
@@ -60,7 +61,7 @@ public class EventService {
                 });
 
         // Mono для конвертации бюджета
-        Mono<Double> budgetMono = Mono.fromSupplier(() -> {
+        Mono<BigDecimal> budgetMono = Mono.fromSupplier(() -> {
             log.info("Client's budget: {} {}", amount, currency);
             return defineBudgetAndConvert(amount, currency);
         });
@@ -69,7 +70,7 @@ public class EventService {
         return Mono.zip(eventsMono, budgetMono)
                 .flatMap(tuple -> {
                     List<EventDTO> events = tuple.getT1();
-                    double budget = tuple.getT2();
+                    BigDecimal budget = tuple.getT2();
                     log.info("Budget in RUB: {}", budget);
                     List<EventDTO> suitableEvents = filterSuitableEvents(events, budget);
                     log.info("{} suitable events have been found", suitableEvents.size());
@@ -96,37 +97,28 @@ public class EventService {
         return baseUrl + "&actual_since=" + dateFrom + "&actual_until=" + dateTo;
     }
 
-    private List<EventDTO> filterSuitableEvents(List<EventDTO> events, double budget) {
-        log.info("The filtering of the list of events begins, taking into account the client's budget");
+    private List<EventDTO> filterSuitableEvents(List<EventDTO> events, BigDecimal budget) {
+        log.info("Filtering of the list of events begins, taking into account the client's budget");
 
         return events.stream()
-                .map(event -> {
-                    // Делаю парсинг и устанавливаю цену в поле price
-                    try {
-                        Price price = parser.parsePrice(event.getPriceTextValue());
-                        if (price != null) {
-                            event.setMinPrice(price);
-                        } else {
-                            log.warn("The price is not available for the event: {}", event);
-                        }
-                    } catch (Exception e) {
-                        log.error("Error when parsing the price of an event: {}", event, e);
-                        event.setMinPrice(new Price(0.0, "RUB")); // значение по умолчанию
-                    }
-                    return event;
+                .filter(event -> {
+                    String priceInText = event.getPrice();
+                    BigDecimal price = PriceParser.parsePrice(priceInText);
+
+                    log.debug("Price fot event: {}", price);
+
+                    return budget.compareTo(price) >= 0;
                 })
-                .filter(event -> event.getMinPrice() != null &&
-                        (event.getMinPrice().getAmount() == 0.0 || event.getMinPrice().getAmount() <= budget))
                 .toList();
     }
 
-    private double defineBudgetAndConvert(double amount, String currency) {
+    public BigDecimal defineBudgetAndConvert(BigDecimal amount, String currency) {
         log.info("The budget review begins");
         return currency.equals("RUB") ? amount
                 : convertCurrencyWithConverter(new CurrencyConversionRequest(currency, "RUB", amount));
     }
 
-    private double convertCurrencyWithConverter(CurrencyConversionRequest request) {
+    public BigDecimal convertCurrencyWithConverter(CurrencyConversionRequest request) {
         log.info("A request to the Currency-Converter service begins");
         CurrencyConversionResponse convertedCurrency = webClient.post()
                 .uri(converterUrl)

@@ -46,7 +46,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
-    testImplementation("org.mockito:mockito-core:5.5.0")
+    testImplementation("org.mockito:mockito-core:5.14.1")
     testImplementation("io.github.hakky54:logcaptor:2.9.3")
     implementation("org.slf4j:slf4j-api:2.0.16")
     implementation("ch.qos.logback:logback-classic:1.5.8")
@@ -67,6 +67,7 @@ dependencies {
     testImplementation("javax.servlet:javax.servlet-api:4.0.1")
 
     implementation("org.springframework:spring-webflux:6.1.13")
+    implementation("org.springframework.boot:spring-boot-starter-webflux:3.3.4")
 }
 
 tasks.withType<Test>() {

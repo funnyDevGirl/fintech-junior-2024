@@ -2,13 +2,12 @@ package org.tbank.dto.events.convert;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
 public class CurrencyConversionResponse {
     private String fromCurrency;
     private String toCurrency;
-    private Double convertedAmount;
+    private BigDecimal convertedAmount;
 }

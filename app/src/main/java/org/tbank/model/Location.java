@@ -16,4 +16,8 @@ public class Location implements Identifiable<Long>, BaseEntity {
     private String slug;
 
     private String name;
+
+    public Location(String slug) {
+        this.slug = slug;
+    }
 }

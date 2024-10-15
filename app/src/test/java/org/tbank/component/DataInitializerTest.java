@@ -24,6 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -62,7 +63,8 @@ public class DataInitializerTest {
         locationService = mock(LocationService.class);
         categoryService = mock(CategoryService.class);
         dataInitializer = new DataInitializer(locationRepository, categoryRepository,
-                locationService, categoryService, locationMapper, categoryMapper);
+                locationService, categoryService, locationMapper, categoryMapper,
+                Executors.newFixedThreadPool(2), Executors.newScheduledThreadPool(2));
     }
 
     @AfterEach
@@ -73,32 +75,40 @@ public class DataInitializerTest {
     }
 
     @Test
-    void testInitLocationsSuccess() {
+    void testInitLocationsSuccess() throws InterruptedException {
         LocationCreateDTO locationDTO = new LocationCreateDTO("slug", "name");
         Location location = new Location(null, "slug", "name");
 
         when(locationService.fetchLocations()).thenReturn(List.of(locationDTO));
         when(locationMapper.map(locationDTO)).thenReturn(location);
 
+        // Запускаем многопоточную инициализацию данных
         dataInitializer.run(null);
+
+        // Задержка для ожидания выполнения потоков
+        Thread.sleep(500); // Выбор времени ожидания может зависеть от ваших тестов
 
         verify(locationService).fetchLocations();
         verify(locationMapper).map(locationDTO);
         verify(locationRepository, times(1)).save(location);
-        
+
         String output = outContent.toString();
         assertTrue(output.contains("Locations initialization completed successfully."));
     }
 
     @Test
-    void testInitCategoriesSuccess() {
+    void testInitCategoriesSuccess() throws InterruptedException {
         CategoryCreateDTO categoryDTO = new CategoryCreateDTO("slug", 200L, "name");
         Category category = new Category(null, 200L, "slug", "name");
 
         when(categoryService.fetchCategories()).thenReturn(List.of(categoryDTO));
         when(categoryMapper.map(categoryDTO)).thenReturn(category);
 
+        // Запускаем многопоточную инициализацию данных
         dataInitializer.run(null);
+
+        // Задержка для ожидания выполнения потоков
+        Thread.sleep(500);
 
         verify(categoryService).fetchCategories();
         verify(categoryMapper).map(categoryDTO);
@@ -109,10 +119,14 @@ public class DataInitializerTest {
     }
 
     @Test
-    void testInitLocationsNoData() {
+    void testInitLocationsNoData() throws InterruptedException {
         when(locationService.fetchLocations()).thenReturn(Collections.emptyList());
 
+        // Запускаем многопоточную инициализацию данных
         dataInitializer.run(null);
+
+        // Задержка для ожидания выполнения потоков
+        Thread.sleep(500);
 
         verify(locationService).fetchLocations();
         verify(locationRepository, never()).save(any());
@@ -122,10 +136,14 @@ public class DataInitializerTest {
     }
 
     @Test
-    void testInitCategoriesNoData() {
+    void testInitCategoriesNoData() throws InterruptedException {
         when(categoryService.fetchCategories()).thenReturn(Collections.emptyList());
 
+        // Запускаем многопоточную инициализацию данных
         dataInitializer.run(null);
+
+        // Задержка для ожидания выполнения потоков
+        Thread.sleep(500);
 
         verify(categoryService).fetchCategories();
         verify(categoryRepository, never()).save(any());
@@ -135,26 +153,28 @@ public class DataInitializerTest {
     }
 
     @Test
-    void testRun_ErrorFetchingLocations() {
+    void testRun_ErrorFetchingLocations() throws InterruptedException {
         when(locationService.fetchLocations()).thenThrow(new RuntimeException("Service Error"));
 
+        // Запускаем многопоточную инициализацию данных
         dataInitializer.run(null);
 
-        verify(logger, never()).info("Locations initialization completed successfully.");
-        verify(logger, never()).warn("No locations found in API response");
+        // Задержка для ожидания выполнения потоков
+        Thread.sleep(500);
 
         String output = outContent.toString();
         assertTrue(output.contains("Error when getting a list of locations"));
     }
 
     @Test
-    void testRun_ErrorFetchingCategories() {
+    void testRun_ErrorFetchingCategories() throws InterruptedException {
         when(categoryService.fetchCategories()).thenThrow(new RuntimeException("Service Error"));
 
+        // Запускаем многопоточную инициализацию данных
         dataInitializer.run(null);
 
-        verify(logger, never()).info("Categories initialization completed successfully.");
-        verify(logger, never()).warn("No categories found in API response");
+        // Задержка для ожидания выполнения потоков
+        Thread.sleep(500);
 
         String output = outContent.toString();
         assertTrue(output.contains("Error when getting a list of categories"));

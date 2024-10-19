@@ -22,10 +22,7 @@ import org.tbank.service.LocationService;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 
 @Slf4j
@@ -38,6 +35,7 @@ public class DataInitializer implements ApplicationRunner {
     private final CategoryService categoryService;
     private final LocationMapper locationMapper;
     private final CategoryMapper categoryMapper;
+    private Semaphore semaphore; // ограничение кол-ва одновременных запросов
 
     @Qualifier("customFixedThreadPool")
     private final ExecutorService fixedThreadPool;
@@ -53,6 +51,10 @@ public class DataInitializer implements ApplicationRunner {
     @Value("${app.threadPool.size}")
     private int threadPoolSize;
 
+    @Value("${app.api.rateLimit}")
+    private int maxConcurrentRequests; // Кол-во одновременно отправляемых запросов
+
+
     public DataInitializer(LocationRepository locationRepository, CategoryRepository categoryRepository,
                            LocationService locationService, CategoryService categoryService,
                            LocationMapper locationMapper, CategoryMapper categoryMapper,
@@ -66,6 +68,7 @@ public class DataInitializer implements ApplicationRunner {
         this.categoryMapper = categoryMapper;
         this.fixedThreadPool = fixedThreadPool;
         this.scheduledThreadPool = scheduledThreadPool;
+        this.semaphore = new Semaphore(maxConcurrentRequests);
     }
 
     @Override
@@ -78,23 +81,7 @@ public class DataInitializer implements ApplicationRunner {
         scheduledThreadPool.scheduleAtFixedRate(this::multithreadedInitializeData, 0, scheduleDuration.toMillis(), TimeUnit.MILLISECONDS);
     }
 
-
-    // можно вызвать в методе run() для отслеживания метрик, вместо multithreadedInitializeData()
-    private void initializeDataWithoutMultithreading() {
-        long startTime = System.currentTimeMillis(); // Начало замера времени
-
-        initCategories();
-        initLocations();
-
-        long endTime = System.currentTimeMillis(); // Конец замера времени
-        long duration = endTime - startTime;
-
-        initializationMetrics.add(new InitializationMetric(threadPoolSize, duration));
-        log.info("Initializing categories and locations without multithreading took {} ms using {} threads", duration, threadPoolSize);
-        printInitializationMetrics();
-    }
-
-    private void multithreadedInitializeData() {
+    public void multithreadedInitializeData() {
         parallelInitOfCategoriesAndLocations(threadPoolSize);
         printInitializationMetrics();
     }
@@ -140,7 +127,7 @@ public class DataInitializer implements ApplicationRunner {
         log.info("The initialization of locations started...");
 
         try {
-            List<LocationCreateDTO> locationCreateDTOS = locationService.fetchLocations();
+            List<LocationCreateDTO> locationCreateDTOS = fetchLocationsWithRateLimiting(); // добавила рейт-лимит
             log.info("The amount of locations received from the API: {}", locationCreateDTOS.size());
 
             if (!locationCreateDTOS.isEmpty()) {
@@ -169,7 +156,7 @@ public class DataInitializer implements ApplicationRunner {
         log.info("The initialization of categories started...");
 
         try {
-            List<CategoryCreateDTO> categoryCreateDTOS = categoryService.fetchCategories();
+            List<CategoryCreateDTO> categoryCreateDTOS = fetchCategoriesWithRateLimiting(); // добавила рейт-лимит
             log.info("The amount of categories received from the API: {}", categoryCreateDTOS.size());
 
             if (!categoryCreateDTOS.isEmpty()) {
@@ -192,5 +179,29 @@ public class DataInitializer implements ApplicationRunner {
         log.info("Initialization of categories completed.");
         List<Category> categoryResult = categoryRepository.findAll();
         log.info("CategoryRepository contains {} categories", categoryResult.size());
+    }
+
+    protected List<LocationCreateDTO> fetchLocationsWithRateLimiting() throws InterruptedException {
+        semaphore.acquire(); // Ожидание получения разрешения на выполнение
+        try {
+            return locationService.fetchLocations();
+        } finally {
+            semaphore.release(); // Освобождение разрешения
+        }
+    }
+
+    protected List<CategoryCreateDTO> fetchCategoriesWithRateLimiting() throws InterruptedException {
+        semaphore.acquire(); // Ожидание получения разрешения на выполнение
+        try {
+            return categoryService.fetchCategories();
+        } finally {
+            semaphore.release(); // Освобождение разрешения
+        }
+    }
+
+    // Для тестов
+    public void setMaxConcurrentRequests(int maxConcurrentRequests) {
+        this.semaphore.drainPermits(); // Удаляю все возможные разрешения
+        this.semaphore = new Semaphore(maxConcurrentRequests); // Инициализирую новый семафор
     }
 }

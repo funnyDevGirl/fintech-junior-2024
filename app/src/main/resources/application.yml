@@ -21,3 +21,5 @@ app:
     size: 1
   dataInitialization:
     schedule: PT1H # устанавливаю расписание для инициализации
+  api:
+    rateLimit: 2

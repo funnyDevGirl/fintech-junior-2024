@@ -38,6 +38,10 @@ dependencies {
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -55,6 +59,9 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.17.2")
     testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
     implementation(project(":logging-starter"))
+    implementation("org.postgresql:postgresql:42.7.4")
+    runtimeOnly("com.h2database:h2")
+    runtimeOnly("org.postgresql:postgresql")
 
     testImplementation("org.wiremock.integrations.testcontainers:wiremock-testcontainers-module:1.0-alpha-13")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -63,8 +70,9 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter:1.20.1")
     testImplementation("org.testcontainers:postgresql:1.20.2")
     testImplementation("org.assertj:assertj-core:3.26.3")
-    implementation("org.postgresql:postgresql:42.7.4")
     testImplementation("javax.servlet:javax.servlet-api:4.0.1")
+    implementation("org.instancio:instancio-junit:3.3.1")
+    implementation("net.datafaker:datafaker:2.0.2")
 }
 
 tasks.withType<Test>() {

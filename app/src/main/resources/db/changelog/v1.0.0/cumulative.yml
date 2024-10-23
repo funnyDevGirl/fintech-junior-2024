@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: 2024-10-22-create-table-events.yml
+  - include:
+      file: 2024-10-22-create-table-places.yml

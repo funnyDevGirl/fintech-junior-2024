@@ -1,0 +1,29 @@
+- changeSet:
+    id: create_places_table
+    author: alina_tarasova
+    changes:
+      - createTable:
+          tableName: places
+          columns:
+            - column:
+                name: id
+                type: bigint
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: slug
+                type: varchar(255)
+                constraints:
+                  nullable: false
+            - column:
+                name: name
+                type: varchar(255)
+                constraints:
+                  nullable: false
+            - column:
+                name: created_at
+                type: timestamp
+                constraints:
+                  nullable: false

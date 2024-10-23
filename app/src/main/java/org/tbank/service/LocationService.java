@@ -1,8 +1,7 @@
 package org.tbank.service;
 
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +12,12 @@ import org.tbank.dto.locations.LocationDTO;
 import org.tbank.dto.locations.LocationUpdateDTO;
 import org.tbank.exception.ResourceNotFoundException;
 import org.tbank.mapper.LocationMapper;
-import org.tbank.repository.LocationRepository;
+import org.tbank.model.Location;
+import org.tbank.repository.LocationJpaRepository;
 import java.util.Arrays;
 import java.util.List;
 
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LocationService {
@@ -26,34 +26,36 @@ public class LocationService {
     private String apiUrl;
 
     private final LocationMapper mapper;
-    private final LocationRepository repository;
+    private final LocationJpaRepository repository;
     private final RestTemplate restTemplate;
-    private static final Logger logger = LoggerFactory.getLogger(LocationService.class);
 
 
     public List<LocationDTO> getAll() {
-        var locations = repository.findAll();
+        List<Location> locations = repository.findAll();
+        log.info("{} locations were extracted from the database", locations.size());
 
         return locations.stream().map(mapper::map).toList();
     }
 
     public LocationDTO findById(Long id) {
-        var location = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Location With Id: " + id + " Not Found"));
+        Location location = repository.findByIdWithEvents(id).orElseThrow(
+                () -> new ResourceNotFoundException("Location with id: " + id + " not found"));
+
+        log.info("Location with id: {} found in DB", id);
 
         return mapper.map(location);
     }
 
     public LocationDTO create(LocationCreateDTO locationCreateDTO) {
-        var location = mapper.map(locationCreateDTO);
+        Location location = mapper.map(locationCreateDTO);
         repository.save(location);
 
         return mapper.map(location);
     }
 
     public LocationDTO update(LocationUpdateDTO locationUpdateDTO, Long id) {
-        var location = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Location With Id: " + id + " Not Found"));
+        Location location = repository.findByIdWithEvents(id).orElseThrow(
+                () -> new ResourceNotFoundException("Location with id: " + id + " not found"));
 
         mapper.update(locationUpdateDTO, location);
         repository.save(location);
@@ -62,6 +64,9 @@ public class LocationService {
     }
 
     public void delete(Long id) {
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Location with id: " + id + " not found");
+        }
         repository.deleteById(id);
     }
 

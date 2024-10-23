@@ -1,0 +1,39 @@
+- changeSet:
+    id: create_events_table
+    author: alina_tarasova
+    changes:
+      - createTable:
+          tableName: events
+          columns:
+            - column:
+                name: id
+                type: bigint
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: name
+                type: varchar(255)
+                constraints:
+                  nullable: false
+            - column:
+                name: date
+                type: timestamp
+                constraints:
+                  nullable: false
+            - column:
+                name: place_id
+                type: bigint
+                constraints:
+                  nullable: false
+            - column:
+                name: created_at
+                type: timestamp
+      - addForeignKeyConstraint:
+          baseTableName: events
+          baseColumnNames: place_id
+          referencedTableName: places
+          referencedColumnNames: id
+          constraintName: fk_events_place
+          onDelete: "CASCADE"/>

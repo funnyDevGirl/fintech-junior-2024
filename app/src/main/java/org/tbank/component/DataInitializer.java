@@ -13,7 +13,7 @@ import org.tbank.mapper.LocationMapper;
 import org.tbank.model.Category;
 import org.tbank.model.Location;
 import org.tbank.repository.CategoryRepository;
-import org.tbank.repository.LocationRepository;
+import org.tbank.repository.LocationJpaRepository;
 import org.tbank.service.CategoryService;
 import org.tbank.service.LocationService;
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
 public class DataInitializer implements ApplicationRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(DataInitializer.class);
-    private final LocationRepository locationRepository;
+    private final LocationJpaRepository locationRepository;
     private final CategoryRepository categoryRepository;
     private final LocationService locationService;
     private final CategoryService categoryService;
@@ -34,8 +34,7 @@ public class DataInitializer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        initLocations();
-        initCategories();
+
     }
 
     private void initLocations() {

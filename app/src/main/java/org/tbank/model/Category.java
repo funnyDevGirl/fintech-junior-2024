@@ -1,8 +1,9 @@
 package org.tbank.model;
 
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.tbank.dto.categories.CategorySnapshot;
 
 
 @Data
@@ -13,4 +14,8 @@ public class Category implements Identifiable<Long>, BaseEntity {
     private Long cityId;
     private String slug;
     private String name;
+
+    public CategorySnapshot createSnapshot() {
+        return new CategorySnapshot(this, id, cityId, slug, name);
+    }
 }

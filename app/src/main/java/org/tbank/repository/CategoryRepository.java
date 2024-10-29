@@ -1,12 +1,13 @@
 package org.tbank.repository;
 
 import org.springframework.stereotype.Repository;
+import org.tbank.dto.categories.CategorySnapshot;
 import org.tbank.model.Category;
 import java.util.Optional;
 
 
 @Repository
-public class CategoryRepository extends SimpleRepository<Category> {
+public class CategoryRepository extends SimpleRepository<Category, CategorySnapshot> {
 
     public Optional<Category> findBySlug(String slug) {
         return storage.values().stream()

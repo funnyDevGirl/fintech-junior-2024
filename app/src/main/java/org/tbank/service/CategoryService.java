@@ -1,8 +1,7 @@
 package org.tbank.service;
 
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.tbank.dto.categories.CategoryCreateDTO;
 import org.tbank.dto.categories.CategoryDTO;
+import org.tbank.dto.categories.CategorySnapshot;
 import org.tbank.dto.categories.CategoryUpdateDTO;
 import org.tbank.mapper.CategoryMapper;
 import org.tbank.exception.ResourceNotFoundException;
@@ -17,7 +17,7 @@ import org.tbank.repository.CategoryRepository;
 import java.util.Arrays;
 import java.util.List;
 
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
@@ -28,8 +28,6 @@ public class CategoryService {
     private final CategoryMapper mapper;
     private final CategoryRepository repository;
     private final RestTemplate restTemplate;
-    private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
-
 
     public List<CategoryDTO> getAll() {
         var categories = repository.findAll();
@@ -55,6 +53,10 @@ public class CategoryService {
         var category = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Category With Id: " + id + " Not Found"));
 
+        CategorySnapshot snapshot = category.createSnapshot();
+        log.info("Snapshot of category '{}' is saved before the update", snapshot);
+        repository.saveSnapshot(snapshot);
+
         mapper.update(categoryUpdateDTO, category);
         repository.save(category);
 
@@ -62,8 +64,9 @@ public class CategoryService {
     }
 
     public void delete(Long id) {
-        logger.info("Deleting category with ID: {}", id);
+        log.info("Deleting category with ID: {}", id);
         repository.deleteById(id);
+
     }
 
     public List<CategoryCreateDTO> fetchCategories() {

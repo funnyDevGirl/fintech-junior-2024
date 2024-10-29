@@ -2,17 +2,10 @@ package org.tbank.collections;
 
 import lombok.Getter;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-/*
- TODO:
- 1. add(1);
-    get(0);
-    remove(0);
-    contains(1);
-    addAll(List);
- 2. Stream <T> -> CustomLinkedList<T> (use reduce())
-*/
 
 public class CustomLinkedList<T> {
 
@@ -41,6 +34,36 @@ public class CustomLinkedList<T> {
     }
 
 
+    public CustomIterator<T> iterator() {
+        return new CustomIterator<T>() {
+
+            private Node<T> current = head;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                T element = current.element;
+                current = current.next;
+                return element;
+            }
+
+            @Override
+            public void forEachRemaining(Consumer<? super T> action) {
+                while (current != null) {
+                    action.accept(current.element);
+                    current = current.next;
+                }
+            }
+        };
+    }
+
     public void add(T element) {
         Node<T> elementNode = new Node<T>(element);
 
@@ -56,11 +79,9 @@ public class CustomLinkedList<T> {
         size++;
     }
 
-
     public T get(int index) {
         return getNode(index).element;
     }
-
 
     private Node<T> getNode(int index) {
         if (index < 0 || index >= size) {
@@ -75,7 +96,6 @@ public class CustomLinkedList<T> {
 
         return result;
     }
-
 
     public void remove(int index) {
         Node<T> current = getNode(index); // тут будет проверка на IndexOutOfBoundsException()
@@ -100,7 +120,6 @@ public class CustomLinkedList<T> {
         size--;
     }
 
-
     public boolean contains(T element) {
         Node<T> current = head;
 
@@ -113,11 +132,9 @@ public class CustomLinkedList<T> {
         return false;
     }
 
-
     public void addAll(List<T> list) {
         list.forEach(this::add);
     }
-
 
     public void addAll(CustomLinkedList<T> list) {
         if (!list.isEmpty()) {
@@ -134,11 +151,9 @@ public class CustomLinkedList<T> {
         }
     }
 
-
     public boolean isEmpty() {
         return head == null;
     }
-
 
     public static <T> CustomLinkedList<T> collectFromStream(Stream<T> stream) {
 
@@ -154,7 +169,6 @@ public class CustomLinkedList<T> {
                 }
         );
     }
-
 
     public String toString() {
         StringBuilder sb = new StringBuilder();

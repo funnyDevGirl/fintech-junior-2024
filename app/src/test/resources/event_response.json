@@ -1,0 +1,15 @@
+{
+  "count": 1,
+  "next": "https://kudago.com/",
+  "previous": null,
+  "results": [
+    {
+      "title": "проект VR Gallery",
+      "slug": "vyistavka-vr-gallery",
+      "location": {
+        "slug": "msk"
+      },
+      "price": "от 950 до 1100 рублей"
+    }
+  ]
+}

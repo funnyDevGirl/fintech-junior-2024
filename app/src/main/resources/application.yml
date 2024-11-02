@@ -18,7 +18,7 @@ converter-url: "https://localhost:8081/api/v1/currencies/convert"
 
 app:
   threadPool:
-    size: 1
+    size: 2
   dataInitialization:
     schedule: PT1H # устанавливаю расписание для инициализации
   api:

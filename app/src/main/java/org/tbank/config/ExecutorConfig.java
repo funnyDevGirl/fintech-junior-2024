@@ -27,6 +27,6 @@ public class ExecutorConfig {
 
     @Bean(name = "customScheduledThreadPool")
     public ScheduledExecutorService scheduledThreadPool() {
-        return Executors.newScheduledThreadPool(1);
+        return Executors.newScheduledThreadPool(2);
     }
 }

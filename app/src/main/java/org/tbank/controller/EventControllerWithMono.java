@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.tbank.dto.events.EventDTO;
-import org.tbank.service.EventService;
+import org.tbank.service.EventServiceWithMono;
 import reactor.core.publisher.Mono;
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/events")
 @AllArgsConstructor
-public class EventController {
+public class EventControllerWithMono {
 
-    private final EventService eventService;
+    private final EventServiceWithMono eventService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)

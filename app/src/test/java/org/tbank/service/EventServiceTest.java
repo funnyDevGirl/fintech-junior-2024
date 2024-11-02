@@ -41,7 +41,7 @@ class EventServiceTest {
     private JsonParser parser;
 
     @InjectMocks
-    private EventService eventService;
+    private EventServiceWithMono eventService;
 
     private static final String CONVERTER_URL = "http://example.com/convert";
 

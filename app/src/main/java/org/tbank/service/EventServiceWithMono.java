@@ -24,7 +24,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EventService {
+public class EventServiceWithMono {
 
     @Value("${events-url}")
     private String baseUrl;

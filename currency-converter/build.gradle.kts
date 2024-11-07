@@ -45,6 +45,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    testImplementation("org.springframework.security:spring-security-test")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -63,12 +66,17 @@ dependencies {
     implementation("io.github.resilience4j:resilience4j-spring-boot2:2.2.0")
     implementation("org.springframework.boot:spring-boot-starter-actuator:3.3.4")
     implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.18.0")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.18.0")
 
     implementation("javax.validation:validation-api:2.0.1.Final")
 
     implementation("org.springframework.boot:spring-boot-starter-cache")
     implementation("com.github.ben-manes.caffeine:caffeine:3.1.8")
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+    implementation("jakarta.mail:jakarta.mail-api:2.0.1")
+    implementation("com.sun.mail:jakarta.mail:2.0.1")
 }
 
 tasks.withType<Test>() {

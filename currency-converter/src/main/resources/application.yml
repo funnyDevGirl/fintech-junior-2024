@@ -19,6 +19,15 @@ spring:
     caffeine:
       spec: expireAfterWrite=1h
 
+  mail:
+    host: smtp.example.com # Адрес SMTP-сервера (например, smtp.gmail.com для Gmail)
+    port: 587 # Порт для TLS
+    username: myemail@gmail.com
+    password: mypassword
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
 logging:
   level:
     root: INFO
@@ -57,3 +66,9 @@ springdoc:
     path: /api-docs
 
 cb-api-url: "http://www.cbr.ru/scripts/XML_daily.asp?date_req="
+
+rsa:
+  private-key: classpath:certs/private.pem
+  public-key: classpath:certs/public.pem
+
+default-role: "USER"

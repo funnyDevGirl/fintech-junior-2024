@@ -15,17 +15,17 @@ public class JWTUtils {
     private final JwtEncoder encoder;
 
     public String generateToken(String username, boolean rememberMe) {
-            Instant now = Instant.now();
-            long expirationTime = rememberMe ? 30 : 10;
-            Instant expiration = now.plus(expirationTime, rememberMe ? ChronoUnit.DAYS : ChronoUnit.MINUTES);
+        Instant now = Instant.now();
+        long expirationTime = rememberMe ? 30 : 10;
+        Instant expiration = now.plus(expirationTime, rememberMe ? ChronoUnit.DAYS : ChronoUnit.MINUTES);
 
-            JwtClaimsSet claims = JwtClaimsSet.builder()
+        JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now)
                 .expiresAt(expiration)
                 .subject(username)
                 .build();
 
-            return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-        }
+        return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+    }
 }

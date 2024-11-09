@@ -2,7 +2,6 @@ package org.tbank.controller;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,15 +26,4 @@ public class AuthenticationController {
 
         return jwtUtils.generateToken(authRequest.getUsername(), authRequest.isRememberMe());
     }
-
-
-//    @PostMapping("/logout")
-//    public ResponseEntity<String> logout(@RequestHeader("Authorization") String token) {
-//        if (token != null && token.startsWith("Bearer ")) {
-//            String jwtToken = token.substring(7);
-//            tokenStore.invalidateToken(jwtToken); // Удаляем токен
-//            return ResponseEntity.ok("Successfully logged out");
-//        }
-//        return ResponseEntity.badRequest().body("Invalid token");
-//    }
 }

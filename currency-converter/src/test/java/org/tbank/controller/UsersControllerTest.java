@@ -1,12 +1,5 @@
 package org.tbank.controller;
 
-import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,18 +10,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
-import org.tbank.dto.roles.RoleCreateDTO;
 import org.tbank.dto.users.UserCreateDTO;
-import org.tbank.mapper.RoleMapper;
 import org.tbank.mapper.UserMapper;
 import org.tbank.model.Role;
 import org.tbank.model.User;
 import org.tbank.repository.RoleRepository;
 import org.tbank.repository.UserRepository;
 import java.util.HashMap;
-import java.util.Set;
-
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest
@@ -49,9 +42,6 @@ public class UsersControllerTest {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private RoleMapper roleMapper;
-
     private User testUser;
     private User anotherTestUser;
 
@@ -59,10 +49,6 @@ public class UsersControllerTest {
 
     @BeforeEach
     public void setUp() {
-        RoleCreateDTO roleCreateDTO = new RoleCreateDTO("USER");
-        Role testRole = roleMapper.toRole(roleCreateDTO);
-        roleRepository.save(testRole);
-
         UserCreateDTO createDTO = new UserCreateDTO();
         createDTO.setEmail("chuck.norris@google.com");
         createDTO.setFirstName("Chuck");
@@ -70,11 +56,13 @@ public class UsersControllerTest {
         createDTO.setPassword("some-password");
 
         testUser = userMapper.toUser(createDTO);
-        testUser.getRoles().add(testRole);
-
         userRepository.save(testUser);
-        token = jwt().jwt(builder -> builder.subject(testUser.getEmail()));
 
+        Role testRole = roleRepository.findByNameWithEagerUpload("USER").orElseThrow();
+        testRole.addUser(testUser);
+        roleRepository.save(testRole);
+
+        token = jwt().jwt(builder -> builder.subject(testUser.getEmail()));
 
         UserCreateDTO anotherCreateDTO = new UserCreateDTO();
         anotherCreateDTO.setEmail("alice.norris@google.com");
@@ -103,7 +91,8 @@ public class UsersControllerTest {
                 v -> v.node("firstName").isEqualTo(testUser.getFirstName()),
                 v -> v.node("lastName").isEqualTo(testUser.getLastName()),
                 v -> v.node("email").isEqualTo(testUser.getEmail()),
-                v -> v.node("id").isEqualTo(testUser.getId())
+                v -> v.node("id").isEqualTo(testUser.getId()),
+                v -> v.node("roleNames[0]").isEqualTo("USER")
         );
     }
 
@@ -116,7 +105,7 @@ public class UsersControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isCreated());
 
-        var user = userRepository.findByEmail(anotherTestUser.getEmail()).orElseThrow();
+        var user = userRepository.findByEmailWithEagerUpload(anotherTestUser.getEmail()).orElseThrow();
 
         assertThat(user).isNotNull();
         assertThat(user.getFirstName()).isEqualTo(anotherTestUser.getFirstName());
@@ -153,7 +142,7 @@ public class UsersControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isOk());
 
-        var user = userRepository.findById(testUser.getId()).orElseThrow();
+        var user = userRepository.findByIdWithRoles(testUser.getId()).orElseThrow();
 
         assertThat(user.getFirstName()).isEqualTo(dto.getFirstName());
         assertThat(user.getLastName()).isEqualTo(dto.getLastName());
@@ -172,7 +161,7 @@ public class UsersControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isOk());
 
-        var author = userRepository.findById(testUser.getId()).orElseThrow();
+        var author = userRepository.findByIdWithRoles(testUser.getId()).orElseThrow();
 
         assertThat(author.getLastName()).isEqualTo(testUser.getLastName());
         assertThat(author.getFirstName()).isEqualTo(dto.get("firstName"));

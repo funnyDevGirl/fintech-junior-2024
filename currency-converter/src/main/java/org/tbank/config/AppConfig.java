@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Getter
 public class AppConfig {
+
+    @Value("${admin-role}")
+    private String adminRoleName;
+
     @Value("${default-role}")
     private String defaultRoleName;
 }

@@ -2,12 +2,9 @@ package org.tbank.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.tbank.config.AppConfig;
-import org.tbank.dto.roles.RoleCreateDTO;
-import org.tbank.dto.roles.RoleDTO;
 import org.tbank.dto.users.PasswordResetDTO;
 import org.tbank.dto.users.UserCreateDTO;
 import org.tbank.dto.users.UserDTO;
@@ -20,6 +17,7 @@ import org.tbank.model.User;
 import org.tbank.repository.RoleRepository;
 import org.tbank.repository.UserRepository;
 import org.tbank.util.UserUtils;
+import javax.management.relation.RoleNotFoundException;
 import java.util.Optional;
 import static java.lang.String.format;
 
@@ -37,44 +35,31 @@ public class UserService {
     private final AppConfig appConfig;
 
 
-    public UserDTO create(UserCreateDTO userCreateDTO) {
-        Role role = roleRepository.findByName(appConfig.getDefaultRoleName())
-                .orElse(findOrCreateRole(appConfig.getDefaultRoleName()));
+    public UserDTO create(UserCreateDTO userCreateDTO) throws RoleNotFoundException {
+        Role role = roleRepository.findByNameWithEagerUpload(appConfig.getDefaultRoleName()).orElseThrow(
+                        () -> new RoleNotFoundException(format("Role with name '%s' not found", appConfig.getDefaultRoleName())));
 
         User user = userMapper.toUser(userCreateDTO);
+        userRepository.save(user);
 
-        user.getRoles().add(role);
+        role.addUser(user);
+        roleRepository.save(role);
+
         log.debug("User with email '{}' has been assigned the role '{}'",
                 user.getEmail(), role);
-
-        userRepository.save(user);
 
         return userMapper.toDto(user);
     }
 
-    private Role findOrCreateRole(String name) {
-        Optional<Role> optionalRole = roleRepository.findByName(name);
-        if (optionalRole.isPresent()) {
-            log.debug("Role with name: '{}' exists", name);
-
-            return optionalRole.get();
-        } else {
-            RoleDTO dto = roleService.create(new RoleCreateDTO(name));
-            log.debug("Role with name: '{}' has been created", name);
-
-            return roleRepository.findByName(dto.getName()).orElseThrow();
-        }
-    }
-
     public UserDTO findById(Long id) {
-        User user = userRepository.findById(id)
+        User user = userRepository.findByIdWithRoles(id)
                 .orElseThrow(() -> new UserNotFoundException(format("User with ID '%s' not found", id)));
 
         return userMapper.toDto(user);
     }
 
     public UserDTO updateFullUser(UserUpdateDTO userUpdateDTO, Long id) {
-        User user = userRepository.findById(id)
+        User user = userRepository.findByIdWithRoles(id)
                 .orElseThrow(() -> new UserNotFoundException(format("User with ID '%s' not found", id)));
 
         userMapper.update(userUpdateDTO, user);
@@ -88,7 +73,7 @@ public class UserService {
     }
 
     public void requestPasswordReset(String email) {
-        Optional<User> userOptional = userRepository.findByEmail(email);
+        Optional<User> userOptional = userRepository.findByEmailWithEagerUpload(email);
 
         User user = userOptional.orElseThrow(
                 () -> new UsernameNotFoundException(format("The user with the email '%s' was not found.", email)));

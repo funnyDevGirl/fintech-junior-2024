@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.tbank.dto.roles.RoleCreateDTO;
 import org.tbank.dto.roles.RoleDTO;
-import org.tbank.exception.UserNotFoundException;
 import org.tbank.mapper.RoleMapper;
 import org.tbank.model.Role;
 import org.tbank.repository.RoleRepository;
+import javax.management.relation.RoleNotFoundException;
 import static java.lang.String.format;
 
 @Service
@@ -24,9 +24,9 @@ public class RoleService {
         return roleMapper.toDto(role);
     }
 
-    public RoleDTO findById(Long id) {
-        Role role = roleRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(format("Role with ID '%s' not found", id)));
+    public RoleDTO findById(Long id) throws RoleNotFoundException {
+        Role role = roleRepository.findByIdWithEagerUpload(id)
+                .orElseThrow(() -> new RoleNotFoundException(format("Role with ID '%s' not found", id)));
 
         return roleMapper.toDto(role);
     }

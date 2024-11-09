@@ -24,12 +24,12 @@ public class UserUtils {
         }
         String email = authentication.getName();
 
-        return userRepository.findByEmail(email).orElseThrow(
+        return userRepository.findByEmailWithEagerUpload(email).orElseThrow(
                 () -> new AuthenticationCredentialsNotFoundException("Not Authorised"));
     }
 
     public boolean isUser(long id) {
-        String userEmail = userRepository.findById(id).orElseThrow(
+        String userEmail = userRepository.findByIdWithRoles(id).orElseThrow(
                 () -> new UsernameNotFoundException(format("User with ID '%s' not found", id)))
                 .getEmail();
 

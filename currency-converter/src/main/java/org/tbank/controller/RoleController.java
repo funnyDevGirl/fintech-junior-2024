@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.tbank.dto.roles.RoleCreateDTO;
 import org.tbank.dto.roles.RoleDTO;
 import org.tbank.service.RoleService;
+import javax.management.relation.RoleNotFoundException;
 
 @RestController
 @RequestMapping("/api/v1/roles")
@@ -23,7 +24,7 @@ public class RoleController {
 
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public RoleDTO get(@PathVariable Long id) {
+    public RoleDTO get(@PathVariable Long id) throws RoleNotFoundException {
         return roleService.findById(id);
     }
 

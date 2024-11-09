@@ -65,7 +65,7 @@ public class User implements UserDetails {
                 && confirmationCodeExpiry != null && LocalDateTime.now().isBefore(confirmationCodeExpiry);
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private Set<Role> roles = new HashSet<>();
 
     @Override

@@ -29,6 +29,7 @@ public class SecurityConfig {
     private final JwtDecoder jwtDecoder;
     private final PasswordEncoder passwordEncoder;
     private final CustomUserDetailsService userDetailsService;
+    private final AppConfig appConfig;
 
 
     @Bean
@@ -56,8 +57,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/v1/auth/login").permitAll()
 
-                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/v1/user/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/api/v1/admin/**").hasRole(appConfig.getAdminRoleName())
+                        .requestMatchers("/api/v1/user/**").hasAnyRole(
+                                appConfig.getDefaultRoleName(), appConfig.getAdminRoleName())
 
                         .anyRequest().authenticated())
 

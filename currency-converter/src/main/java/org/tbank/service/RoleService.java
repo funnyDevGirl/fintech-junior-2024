@@ -2,7 +2,6 @@ package org.tbank.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.tbank.dto.roles.RoleCreateDTO;
 import org.tbank.dto.roles.RoleDTO;
 import org.tbank.mapper.RoleMapper;
 import org.tbank.model.Role;
@@ -16,13 +15,6 @@ public class RoleService {
 
     private final RoleRepository roleRepository;
     private final RoleMapper roleMapper;
-
-    public RoleDTO create(RoleCreateDTO roleCreateDTO) {
-        Role role = roleMapper.toRole(roleCreateDTO);
-        roleRepository.save(role);
-
-        return roleMapper.toDto(role);
-    }
 
     public RoleDTO findById(Long id) throws RoleNotFoundException {
         Role role = roleRepository.findByIdWithEagerUpload(id)

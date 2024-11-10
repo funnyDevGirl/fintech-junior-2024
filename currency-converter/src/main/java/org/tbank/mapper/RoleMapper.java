@@ -4,7 +4,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
-import org.tbank.dto.roles.RoleCreateDTO;
 import org.tbank.model.Role;
 import org.tbank.dto.roles.RoleDTO;
 
@@ -16,7 +15,5 @@ import org.tbank.dto.roles.RoleDTO;
 )
 public abstract class RoleMapper {
 
-    public abstract Role toRole(RoleCreateDTO labelCreateDTO);
-
-    public abstract RoleDTO toDto(Role label);
+    public abstract RoleDTO toDto(Role role);
 }

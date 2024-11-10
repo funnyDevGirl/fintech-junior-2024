@@ -71,5 +71,5 @@ rsa:
   private-key: classpath:certs/private.pem
   public-key: classpath:certs/public.pem
 
-admin-role: "ADMIN"
-default-role: "USER"
+admin-role: ADMIN
+default-role: USER

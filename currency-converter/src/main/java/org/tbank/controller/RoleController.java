@@ -1,10 +1,8 @@
 package org.tbank.controller;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.tbank.dto.roles.RoleCreateDTO;
 import org.tbank.dto.roles.RoleDTO;
 import org.tbank.service.RoleService;
 import javax.management.relation.RoleNotFoundException;
@@ -15,12 +13,6 @@ import javax.management.relation.RoleNotFoundException;
 public class RoleController {
 
     private final RoleService roleService;
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public RoleDTO create(@Valid @RequestBody RoleCreateDTO roleCreateDTO) {
-        return roleService.create(roleCreateDTO);
-    }
 
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -33,5 +25,4 @@ public class RoleController {
     public void delete(@PathVariable Long id) {
         roleService.delete(id);
     }
-
 }

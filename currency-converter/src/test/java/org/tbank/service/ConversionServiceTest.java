@@ -1,7 +1,8 @@
 package org.tbank.service;
 
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,14 +30,14 @@ public class ConversionServiceTest {
     }
 
     @Test
-    public void testConvert_ValidAmountAndCurrency() {
+    public void testConvertValidAmountAndCurrency() {
         // Setup
         request.setAmount(100.0);
         request.setFromCurrency("USD");
         request.setToCurrency("EUR");
 
-        CurrencyRateDTO usdRate = new CurrencyRateDTO(10L,"USD", 1.0);
-        CurrencyRateDTO eurRate = new CurrencyRateDTO(20L,"EUR", 0.85);
+        CurrencyRateDTO usdRate = new CurrencyRateDTO(10L, "USD", 1.0);
+        CurrencyRateDTO eurRate = new CurrencyRateDTO(20L, "EUR", 0.85);
 
         when(currencyRateService.getCurrencyRate("USD")).thenReturn(usdRate);
         when(currencyRateService.getCurrencyRate("EUR")).thenReturn(eurRate);
@@ -51,7 +52,7 @@ public class ConversionServiceTest {
     }
 
     @Test
-    public void testConvert_InvalidAmount() {
+    public void testConvertInvalidAmount() {
         // Setup
         request.setAmount(0.0); // Неверное значение
         request.setFromCurrency("EUR");
@@ -66,7 +67,7 @@ public class ConversionServiceTest {
     }
 
     @Test
-    public void testConvert_UnsupportedCurrency() {
+    public void testConvertUnsupportedCurrency() {
         // Setup
         request.setAmount(100.0);
         request.setFromCurrency("USD");
@@ -81,7 +82,7 @@ public class ConversionServiceTest {
     }
 
     @Test
-    public void testConvert_MultipleInvalidCurrencies() {
+    public void testConvertMultipleInvalidCurrencies() {
         // Setup
         request.setAmount(100.0);
         request.setFromCurrency("INVALID_FROM");
@@ -96,14 +97,14 @@ public class ConversionServiceTest {
     }
 
     @Test
-    public void testConvert_ConvertsWithCachedExchangeRate() {
+    public void testConvertConvertsWithCachedExchangeRate() {
         // Setup
         request.setAmount(200.0);
         request.setFromCurrency("USD");
         request.setToCurrency("EUR");
 
-        CurrencyRateDTO usdRate = new CurrencyRateDTO(10L,"USD", 1.0);
-        CurrencyRateDTO eurRate = new CurrencyRateDTO(20L,"EUR", 0.5);
+        CurrencyRateDTO usdRate = new CurrencyRateDTO(10L, "USD", 1.0);
+        CurrencyRateDTO eurRate = new CurrencyRateDTO(20L, "EUR", 0.5);
 
         when(currencyRateService.getCurrencyRate("USD")).thenReturn(usdRate);
         when(currencyRateService.getCurrencyRate("EUR")).thenReturn(eurRate);

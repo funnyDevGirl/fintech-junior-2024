@@ -16,7 +16,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 public class CurrencyRateControllerTest {
@@ -39,7 +41,7 @@ public class CurrencyRateControllerTest {
     }
 
     @Test
-    public void getCurrencyRate_validCode_returnsCurrencyRateDTO() throws Exception {
+    public void getCurrencyRateValidCodeReturnsCurrencyRateDTO() throws Exception {
         // Arrange
         CurrencyRateDTO mockedDto = new CurrencyRateDTO(10L, "USD", 94.15);
         when(currencyService.getCurrencyRate("USD")).thenReturn(mockedDto);
@@ -54,7 +56,7 @@ public class CurrencyRateControllerTest {
     }
 
     @Test
-    public void convertCurrency_validRequest_returnsCurrencyConversionResponse() throws Exception {
+    public void convertCurrencyValidRequestReturnsCurrencyConversionResponse() throws Exception {
         // Arrange
         CurrencyConversionResponse conversionResponse = new CurrencyConversionResponse("USD", "EUR", 65.5);
         CurrencyConversionRequest conversionRequest = new CurrencyConversionRequest("USD", "EUR", 70.5);

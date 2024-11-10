@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.tbank.model.CurrencyRate;
 import java.util.Optional;
 
-public interface CurrencyRateRepository extends JpaRepository<CurrencyRate, Long>, JpaSpecificationExecutor<CurrencyRate> {
+public interface CurrencyRateRepository extends JpaRepository<CurrencyRate, Long> {
     Optional<CurrencyRate> findByCurrency(String code);
 }

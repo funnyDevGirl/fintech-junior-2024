@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-    if: github.repository == 'fintech-junior-2024/currency-converter'
     runs-on: ubuntu-latest
 
     steps:
@@ -21,12 +20,14 @@ jobs:
           distribution: 'temurin'
 
       - name: Test with Gradle
+        working-directory: currency-converter
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: 8.7
           arguments: build
 
       - name: Run tests
+        working-directory: currency-converter
         run: ./gradlew test
 
       - name: Publish code coverage

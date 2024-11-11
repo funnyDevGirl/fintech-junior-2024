@@ -2,12 +2,12 @@ FROM gradle:8.7.0-jdk21 AS build
 
 WORKDIR /app
 
-COPY gradlew .
-COPY gradle/wrapper ./gradle/wrapper
-COPY build.gradle .
-COPY settings.gradle .
+COPY currency-converter/gradlew .
+COPY currency-converter/gradle/wrapper ./gradle/wrapper
+COPY currency-converter/build.gradle.kts .
+COPY currency-converter/settings.gradle.kts .
 
-COPY ./ ./
+COPY ./currency-converter/ ./
 
 RUN ./gradlew clean build --no-daemon
 

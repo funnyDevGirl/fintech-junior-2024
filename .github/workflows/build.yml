@@ -19,12 +19,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Test with Gradle
+      - name: Build with Gradle
         working-directory: currency-converter
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.7
-          arguments: build
+        run: ./gradlew build
 
       - name: Run tests
         working-directory: currency-converter

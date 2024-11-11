@@ -1,8 +1,15 @@
+# Core files
 HELP.md
-.gradle
+
+# Ignore Gradle build output
+.gradle/
+build/
+target/
+out/
+
+# Include Gradle Wrapper files
 !gradle/wrapper/gradle-wrapper.jar
-!src/main/**/build/
-!src/test/**/build/
+!gradle/wrapper/gradle-wrapper.properties
 
 # Spring Tool Suite
 .apt_generated
@@ -13,33 +20,24 @@ HELP.md
 .springBeans
 .sts4-cache
 
-!src/main/**/bin/
-!src/test/**/bin/
-
-# Development Environment Settings (IntelliJ IDEA, NetBeans, VS Code)
+# Development Environment Settings
 .idea/
 *.iws
 *.iml
 *.ipr
-!src/main/**/out/
-!src/test/**/out/
+.vscode/
 
+# NetBeans files
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-.vscode/
-
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
 # System files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Logs and temporary files
 *.log
@@ -50,23 +48,12 @@ tmp/
 temp/
 cache/
 
-# Directories with libraries and assemblies
+# Ignore Node modules
 node_modules/
-build/
-target/
-out/
 
-# Build system configuration files and generated data
-dist/
-bin/
-obj/
-.gradle/
+# File type ignores
 *.class
 *.jar
 *.war
 
-# Windows System Configuration File
-desktop.ini
 
-# Ignore Gradle build output directory
-build

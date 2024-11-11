@@ -2,8 +2,8 @@ name: Currency Converter CI
 
 on:
   pull_request:
-    branches:
-      - main
+    paths:
+      - currency-converter/**
 
 jobs:
   build:
@@ -34,13 +34,15 @@ jobs:
           JACOCO_SOURCE_PATH: currency-converter/src/main/java
         with:
           coverageCommand: ./gradlew jacocoTestReport
-          coverageLocations: ${{github.workspace}}currency-converter/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+          coverageLocations: ${{github.workspace}}/currency-converter/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
 
       - name: Static code analysis with Checkstyle
+        working-directory: currency-converter
         run: ./gradlew checkstyleMain checkstyleTest
 
       - name: Build Docker image
-        run: docker build -t currency-converter ./currency-converter
+        working-directory: currency-converter
+        run: docker build -t currency-converter .
 
       - name: Log in to GitHub Packages
         uses: docker/login-action@v1

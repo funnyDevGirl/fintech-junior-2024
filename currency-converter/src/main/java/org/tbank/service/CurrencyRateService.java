@@ -33,7 +33,7 @@ public class CurrencyRateService {
     private final XmlParser parser;
 
 
-    @Cacheable(value = "currencyRatesCache", key = "#code") // включаю кэширование для запроса из репозитория
+    @Cacheable(value = "currencyRatesCache", key = "#code") // вкл. кэширование для запроса из репо
     public CurrencyRateDTO getCurrencyRate(String code) {
 
         CurrencyRate currencyRate = repository.findByCurrency(code).orElseThrow(
@@ -43,7 +43,7 @@ public class CurrencyRateService {
     }
 
     @CircuitBreaker(name = "CurrencyRateService",  fallbackMethod = "fallBackMethod")
-    @Scheduled(cron = "0 0 12 * * ?", zone = "Europe/Moscow") // Каждый день в 12ч по Москве будут сохраняться данные о валютах в БД
+    @Scheduled(cron = "0 0 12 * * ?", zone = "Europe/Moscow") // Каждый день в 12ч по МСК
     public void fetchAndSaveToDBCurrencyRates() {
 
         List<CurrencyRateCreateDTO> fetchingRates = parser.parseCurrency(currencyApiUrl + getFormattedDate());

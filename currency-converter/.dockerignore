@@ -1,0 +1,19 @@
+node_modules
+.git
+logs
+tmp
+.cache
+
+# Игнорируем файлы сборки и временные файлы
+build/
+.gradle/
+out/
+
+# Игнорируем файлы IDE
+.idea/
+*.iml
+*.class
+
+# Игнорируем системные файлы
+.DS_Store
+*.swp

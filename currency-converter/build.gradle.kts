@@ -6,6 +6,8 @@ plugins {
     id("org.springframework.boot") version "3.3.4"
     id("io.spring.dependency-management") version "1.1.4"
     id("application")
+    id("checkstyle")
+    id("jacoco")
     id("io.freefair.lombok") version "8.10"
 }
 
@@ -24,6 +26,11 @@ configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
     }
+}
+
+checkstyle {
+    configFile = file("config/checkstyle/checkstyle.xml")
+    toolVersion = "10.13.0"
 }
 
 repositories {
@@ -72,10 +79,17 @@ dependencies {
 }
 
 tasks.withType<Test>() {
+    finalizedBy(tasks.jacocoTestReport)
     useJUnitPlatform()
     testLogging {
         exceptionFormat = TestExceptionFormat.FULL
         events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
         showStandardStreams = true
+    }
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
     }
 }

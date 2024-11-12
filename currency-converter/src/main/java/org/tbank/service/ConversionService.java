@@ -31,8 +31,8 @@ public class ConversionService {
             log.error("No this currency");
             throw new IllegalArgumentException("Unsupported currency code");
         }
-
-        CurrencyRateDTO currencyFrom = currencyRateService.getCurrencyRate(codeFrom); // будет извлекать из кэша, если код такой же
+        // будет извлекать из кэша, если код такой же
+        CurrencyRateDTO currencyFrom = currencyRateService.getCurrencyRate(codeFrom);
         CurrencyRateDTO currencyTo = currencyRateService.getCurrencyRate(codeTo);
 
         Double convertedAmount = getAmountToCurrency(

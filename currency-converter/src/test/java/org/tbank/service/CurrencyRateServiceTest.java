@@ -26,7 +26,10 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -64,7 +67,7 @@ class CurrencyRateServiceTest {
     }
 
     @Test
-    void getCurrencyRate_validCode_returnsDTO() {
+    void getCurrencyRateValidCodeReturnsDTO() {
         String code = "USD";
         when(repository.findByCurrency(code)).thenReturn(Optional.of(currencyRate));
         when(mapper.map(currencyRate)).thenReturn(currencyRateDTO);
@@ -77,7 +80,7 @@ class CurrencyRateServiceTest {
     }
 
     @Test
-    void getCurrencyRate_invalidCode_throwsCurrencyNotFoundException() {
+    void getCurrencyRateInvalidCodeThrowsCurrencyNotFoundException() {
         String code = "INVALID_CODE";
         when(repository.findByCurrency(code)).thenReturn(Optional.empty());
 
@@ -89,9 +92,10 @@ class CurrencyRateServiceTest {
 
     @Test
     void parseCurrency() throws IOException, URISyntaxException {
-        CurrencyRateCreateDTO dto = new CurrencyRateCreateDTO("GBP", 125.6995); // одна из валют из xml
+        CurrencyRateCreateDTO dto = new CurrencyRateCreateDTO("GBP", 125.6995); // валюта из xml
 
-        File mockFile = new File(getClass().getClassLoader().getResource("xml.xml").toURI()); // получаею путь к файлу-заглушке
+        // получаю путь к файлу-заглушке
+        File mockFile = new File(getClass().getClassLoader().getResource("xml.xml").toURI());
         Document doc = Jsoup.parse(mockFile, "UTF-8"); // использую Jsoup для чтения файла
 
         assertNotNull(doc);
@@ -101,7 +105,8 @@ class CurrencyRateServiceTest {
         Elements currencies = doc.select("Valute");
         for (Element currency : currencies) {
             String charCode = currency.select("CharCode").text();
-            Double vunitRate = Double.parseDouble(currency.select("VunitRate").text().replace(",", "."));
+            Double vunitRate = Double.parseDouble(currency.select("VunitRate")
+                    .text().replace(",", "."));
 
             CurrencyRateCreateDTO rate = new CurrencyRateCreateDTO(charCode, vunitRate);
 
@@ -113,7 +118,7 @@ class CurrencyRateServiceTest {
     }
 
     @Test
-    void fallBackMethod_logsError() {
+    void fallBackMethodLogsError() {
         // Arrange
         Throwable throwable = new RuntimeException("Simulated error");
 

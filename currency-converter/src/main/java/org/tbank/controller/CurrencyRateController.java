@@ -9,7 +9,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.tbank.dto.convert.CurrencyConversionRequest;
 import org.tbank.dto.convert.CurrencyConversionResponse;
 import org.tbank.dto.currency.CurrencyRateDTO;
@@ -35,25 +41,29 @@ public class CurrencyRateController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = CurrencyRateDTO.class),
-                            examples = {@ExampleObject(value = "{\"id\": \"1\", \"currency\": \"USD\", \"rate\": \"94.15\"}")})
+                            examples = {@ExampleObject(value = "{\"id\": \"1\", \"currency\": \"USD\","
+                                    + "\"rate\": \"94.15\"}")})
             ),
             @ApiResponse(responseCode = "404", description = "Unsupported currency code",
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = {@ExampleObject(value = "{\"code\": \"404\", \"message\": \"Unsupported currency code - THB\"}")})
+                            examples = {@ExampleObject(value = "{\"code\": \"404\","
+                                    + "\"message\": \"Unsupported currency code - THB\"}")})
             ),
             @ApiResponse(responseCode = "400", description = "Non-existent currency code format",
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = {@ExampleObject(value = "{\"code\": \"400\", \"message\": \"Non-existent currency code - LALA\"}")})
+                            examples = {@ExampleObject(value = "{\"code\": \"400\","
+                                    + "\"message\": \"Non-existent currency code - LALA\"}")})
             ),
             @ApiResponse(responseCode = "503", description = "The currency rate service is unavailable",
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = {@ExampleObject(value = "{\"code\": \"503\", \"message\": \"The currency rate service is unavailable\"}")}))
+                            examples = {@ExampleObject(value = "{\"code\": \"503\","
+                                    + "\"message\": \"The currency rate service is unavailable\"}")}))
     })
     @GetMapping("/rates/{code}")
     @ResponseStatus(HttpStatus.OK)
@@ -72,25 +82,29 @@ public class CurrencyRateController {
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = CurrencyConversionResponse.class),
-                            examples = {@ExampleObject(value = "{\"fromCurrency\": \"USD\", \"toCurrency\": \"EUR\", \"convertedAmount\": \"65.5\"}")})
+                            examples = {@ExampleObject(value = "{\"fromCurrency\": \"USD\","
+                                    + "\"toCurrency\": \"EUR\", \"convertedAmount\": \"65.5\"}")})
             ),
             @ApiResponse(responseCode = "400", description = "Invalid request parameters",
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = {@ExampleObject(value = "{\"code\": \"400\", \"message\": \"Amount must be greater than zero\"}")})
+                            examples = {@ExampleObject(value = "{\"code\": \"400\","
+                                    + "\"message\": \"Amount must be greater than zero\"}")})
             ),
             @ApiResponse(responseCode = "404", description = "Unsupported currency code",
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = {@ExampleObject(value = "{\"code\": \"404\", \"message\": \"Unsupported currency code - THB\"}")})
+                            examples = {@ExampleObject(value = "{\"code\": \"404\","
+                                    + "\"message\": \"Unsupported currency code - THB\"}")})
             ),
             @ApiResponse(responseCode = "503", description = "The currency rate service is unavailable",
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponse.class),
-                            examples = {@ExampleObject(value = "{\"code\": \"503\", \"message\": \"The currency rate service is unavailable\"}")}))
+                            examples = {@ExampleObject(value = "{\"code\": \"503\","
+                                    + "\"message\": \"The currency rate service is unavailable\"}")}))
     })
     @PostMapping("/convert")
     @ResponseStatus(HttpStatus.OK)

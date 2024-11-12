@@ -41,8 +41,7 @@ jobs:
         run: ./gradlew checkstyleMain checkstyleTest
 
       - name: Build Docker image
-        working-directory: currency-converter
-        run: docker build -t currency-converter .
+        run: docker build -t currency-converter -f currency-converter/Dockerfile .
 
       - name: Log in to GitHub Packages
         uses: docker/login-action@v1

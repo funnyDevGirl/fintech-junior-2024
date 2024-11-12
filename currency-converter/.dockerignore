@@ -3,13 +3,11 @@ node_modules
 logs
 tmp
 .cache
-*.md
 
 # Игнорируем файлы сборки и временные файлы
 build/
 .gradle/
 out/
-*.log
 
 # Игнорируем файлы IDE
 .idea/

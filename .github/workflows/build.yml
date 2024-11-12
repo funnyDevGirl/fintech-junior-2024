@@ -48,7 +48,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          token: ${{ secrets.TOKEN_FOR_PACKAGES }}
+          password: ${{ secrets.TOKEN_FOR_PACKAGES }}
 
       - name: Push Docker image to GitHub Packages
         run: |

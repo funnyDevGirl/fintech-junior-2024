@@ -52,6 +52,6 @@ jobs:
 
       - name: Push Docker image to GitHub Packages
         run: |
-          IMAGE_NAME="ghcr.io/${{ github.repository }}/currency-converter:${{ github.sha }}"
+          IMAGE_NAME="ghcr.io/funnydevgirl/fintech-junior-2024/currency-converter:${{ github.sha }}"
           docker tag currency-converter $IMAGE_NAME
           docker push $IMAGE_NAME

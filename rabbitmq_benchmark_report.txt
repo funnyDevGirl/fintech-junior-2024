@@ -1,0 +1,345 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage
+
+# Run progress: 0,00% complete, ETA 00:16:40
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,041 ops/ms
+# Warmup Iteration   2: 0,041 ops/ms
+# Warmup Iteration   3: 0,041 ops/ms
+# Warmup Iteration   4: 0,036 ops/ms
+# Warmup Iteration   5: 0,035 ops/ms
+Iteration   1: 0,033 ops/ms
+Iteration   2: 0,031 ops/ms
+Iteration   3: 0,029 ops/ms
+Iteration   4: 0,027 ops/ms
+Iteration   5: 0,028 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage":
+  0,029 ±(99.9%) 0,009 ops/ms [Average]
+  (min, avg, max) = (0,027, 0,029, 0,033), stdev = 0,002
+  CI (99.9%): [0,020, 0,039] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage
+
+# Run progress: 10,00% complete, ETA 00:15:10
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,057 ops/ms
+# Warmup Iteration   2: 0,048 ops/ms
+# Warmup Iteration   3: 0,048 ops/ms
+# Warmup Iteration   4: 0,055 ops/ms
+# Warmup Iteration   5: 0,043 ops/ms
+Iteration   1: 0,039 ops/ms
+Iteration   2: 0,047 ops/ms
+Iteration   3: 0,040 ops/ms
+Iteration   4: 0,040 ops/ms
+Iteration   5: 0,038 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage":
+  0,041 ±(99.9%) 0,013 ops/ms [Average]
+  (min, avg, max) = (0,038, 0,041, 0,047), stdev = 0,003
+  CI (99.9%): [0,028, 0,054] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage
+
+# Run progress: 20,00% complete, ETA 00:13:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,030 ops/ms
+# Warmup Iteration   2: 0,025 ops/ms
+# Warmup Iteration   3: 0,021 ops/ms
+# Warmup Iteration   4: 0,034 ops/ms
+# Warmup Iteration   5: 0,046 ops/ms
+Iteration   1: 0,045 ops/ms
+Iteration   2: 0,047 ops/ms
+Iteration   3: 0,046 ops/ms
+Iteration   4: 0,043 ops/ms
+Iteration   5: 0,043 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage":
+  0,045 ±(99.9%) 0,007 ops/ms [Average]
+  (min, avg, max) = (0,043, 0,045, 0,047), stdev = 0,002
+  CI (99.9%): [0,038, 0,052] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage
+
+# Run progress: 30,00% complete, ETA 00:11:49
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,100 ops/ms
+# Warmup Iteration   2: 0,096 ops/ms
+# Warmup Iteration   3: 0,095 ops/ms
+# Warmup Iteration   4: 0,084 ops/ms
+# Warmup Iteration   5: 0,053 ops/ms
+Iteration   1: 0,016 ops/ms
+Iteration   2: 0,016 ops/ms
+Iteration   3: 0,016 ops/ms
+Iteration   4: 0,012 ops/ms
+Iteration   5: 0,011 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage":
+  0,014 ±(99.9%) 0,009 ops/ms [Average]
+  (min, avg, max) = (0,011, 0,014, 0,016), stdev = 0,002
+  CI (99.9%): [0,005, 0,023] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage
+
+# Run progress: 40,00% complete, ETA 00:10:08
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,035 ops/ms
+# Warmup Iteration   2: 0,042 ops/ms
+# Warmup Iteration   3: 0,039 ops/ms
+# Warmup Iteration   4: 0,035 ops/ms
+# Warmup Iteration   5: 0,034 ops/ms
+Iteration   1: 0,033 ops/ms
+Iteration   2: 0,029 ops/ms
+Iteration   3: 0,029 ops/ms
+Iteration   4: 0,028 ops/ms
+Iteration   5: 0,027 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage":
+  0,029 ±(99.9%) 0,009 ops/ms [Average]
+  (min, avg, max) = (0,027, 0,029, 0,033), stdev = 0,002
+  CI (99.9%): [0,020, 0,038] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage
+
+# Run progress: 50,00% complete, ETA 00:08:26
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,053 ops/ms
+# Warmup Iteration   2: 0,059 ops/ms
+# Warmup Iteration   3: 0,051 ops/ms
+# Warmup Iteration   4: 0,055 ops/ms
+# Warmup Iteration   5: 0,044 ops/ms
+Iteration   1: 0,044 ops/ms
+Iteration   2: 0,038 ops/ms
+Iteration   3: 0,040 ops/ms
+Iteration   4: 0,039 ops/ms
+Iteration   5: 0,032 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage":
+  0,039 ±(99.9%) 0,017 ops/ms [Average]
+  (min, avg, max) = (0,032, 0,039, 0,044), stdev = 0,004
+  CI (99.9%): [0,022, 0,056] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage
+
+# Run progress: 60,00% complete, ETA 00:06:45
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,064 ops/ms
+# Warmup Iteration   2: 0,031 ops/ms
+# Warmup Iteration   3: 0,034 ops/ms
+# Warmup Iteration   4: 0,006 ops/ms
+# Warmup Iteration   5: 0,053 ops/ms
+Iteration   1: 0,084 ops/ms
+Iteration   2: 0,126 ops/ms
+Iteration   3: 0,102 ops/ms
+Iteration   4: 0,096 ops/ms
+Iteration   5: 0,094 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage":
+  0,100 ±(99.9%) 0,061 ops/ms [Average]
+  (min, avg, max) = (0,084, 0,100, 0,126), stdev = 0,016
+  CI (99.9%): [0,040, 0,161] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage
+
+# Run progress: 70,00% complete, ETA 00:05:11
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,145 ops/ms
+# Warmup Iteration   2: 0,225 ops/ms
+# Warmup Iteration   3: 0,191 ops/ms
+# Warmup Iteration   4: 0,177 ops/ms
+# Warmup Iteration   5: 0,154 ops/ms
+Iteration   1: 0,162 ops/ms
+Iteration   2: 0,152 ops/ms
+Iteration   3: 0,141 ops/ms
+Iteration   4: 0,128 ops/ms
+Iteration   5: 0,147 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage":
+  0,146 ±(99.9%) 0,049 ops/ms [Average]
+  (min, avg, max) = (0,128, 0,146, 0,162), stdev = 0,013
+  CI (99.9%): [0,097, 0,194] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage
+
+# Run progress: 80,00% complete, ETA 00:03:27
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,001 ops/ms
+# Warmup Iteration   2: ≈ 10⁻⁴ ops/ms
+# Warmup Iteration   3: ≈ 10⁻³ ops/ms
+# Warmup Iteration   4: ≈ 10⁻³ ops/ms
+# Warmup Iteration   5: 0,001 ops/ms
+Iteration   1: 0,001 ops/ms
+Iteration   2: 0,001 ops/ms
+Iteration   3: 0,001 ops/ms
+Iteration   4: 0,001 ops/ms
+Iteration   5: 0,001 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage":
+  0,001 ±(99.9%) 0,001 ops/ms [Average]
+  (min, avg, max) = (0,001, 0,001, 0,001), stdev = 0,001
+  CI (99.9%): [0,001, 0,002] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage
+
+# Run progress: 90,00% complete, ETA 00:01:55
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,003 ops/ms
+# Warmup Iteration   2: 0,003 ops/ms
+# Warmup Iteration   3: 0,003 ops/ms
+# Warmup Iteration   4: 0,003 ops/ms
+# Warmup Iteration   5: 0,003 ops/ms
+Iteration   1: 0,003 ops/ms
+Iteration   2: 0,003 ops/ms
+Iteration   3: 0,003 ops/ms
+Iteration   4: 0,003 ops/ms
+Iteration   5: 0,002 ops/ms
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage":
+  0,003 ±(99.9%) 0,001 ops/ms [Average]
+  (min, avg, max) = (0,002, 0,003, 0,003), stdev = 0,001
+  CI (99.9%): [0,002, 0,004] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:18:58
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                                             Mode  Cnt  Score    Error   Units
+RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage  thrpt    5  0,029 ±  0,009  ops/ms
+RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage  thrpt    5  0,041 ±  0,013  ops/ms
+RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage    thrpt    5  0,045 ±  0,007  ops/ms
+RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage    thrpt    5  0,014 ±  0,009  ops/ms
+RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage    thrpt    5  0,029 ±  0,009  ops/ms
+RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage    thrpt    5  0,039 ±  0,017  ops/ms
+RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage       thrpt    5  0,100 ±  0,061  ops/ms
+RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage       thrpt    5  0,146 ±  0,049  ops/ms
+RabbitMQBenchmark.testStressTestWithLargeMessage                     thrpt    5  0,001 ±  0,001  ops/ms
+RabbitMQBenchmark.testStressTestWithSmallMessage                     thrpt    5  0,003 ±  0,001  ops/ms

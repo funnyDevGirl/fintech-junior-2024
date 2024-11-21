@@ -33,7 +33,7 @@ tasks.test {
     useJUnitPlatform()
 }
 
-// Задача для сборки JMH тестов
+// Сборка JMH тестов
 tasks.register<JavaCompile>("jmhCompile") {
     source = fileTree("src/main/java")
     include("**/*.java")
@@ -62,9 +62,9 @@ tasks.register<JavaExec>("runJmh") {
     )
 
     args = listOf(
-        "-o", "kafka_benchmark_report.txt",
-        "-f", "1",                            // 1 прогон
-        "-i", "5",                            // 5 итераций измерения
-        "-wi", "2"                            // 2 итерации прогрева
+        "-o", "benchmarks_report.txt", // пишу репорт в файл
+        "-f", "1",                     // 1 прогон
+        "-i", "5",                     // 5 итераций измерения
+        "-wi", "2"                     // 2 итерации прогрева
     )
 }

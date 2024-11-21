@@ -23,6 +23,10 @@ services:
       - zookeeper
 
   rabbitmq:
-    image: rabbitmq:management
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     ports:
-      - "15673:15672"
+      - "5672:5672"
+      - "15672:15672"  # для веб-UI

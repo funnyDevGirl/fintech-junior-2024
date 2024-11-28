@@ -1,0 +1,13 @@
+<configuration>
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:5001</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <providers>
+                <timestamp />
+            </providers>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="LOGSTASH" />
+    </root>
+</configuration>

@@ -6,9 +6,27 @@ spring:
     ansi:
       enabled: always
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+
+  metrics:
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
 logging:
   level:
     root: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} | %-5level | %logger | %m %X%n"
 
 locations-url: "https://kudago.com/public-api/v1.4/locations/"
 categories-url: "https://kudago.com/public-api/v1.2/place-categories/"

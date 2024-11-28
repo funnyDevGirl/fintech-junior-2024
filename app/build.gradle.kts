@@ -65,6 +65,9 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.26.3")
     implementation("org.postgresql:postgresql:42.7.4")
     testImplementation("javax.servlet:javax.servlet-api:4.0.1")
+    implementation("org.springframework.boot:spring-boot-starter-actuator:3.4.0")
+    implementation ("net.logstash.logback:logstash-logback-encoder:7.4")
+    implementation("io.micrometer:micrometer-registry-prometheus:1.14.1")
 }
 
 tasks.withType<Test>() {

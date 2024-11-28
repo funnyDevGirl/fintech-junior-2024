@@ -1,0 +1,1235 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancing
+# Parameters: (messageSize = small)
+
+# Run progress: 0,00% complete, ETA 00:04:40
+# Fork: 1 of 1
+# Warmup Iteration   1: 4,715 ops/s
+# Warmup Iteration   2: 9,216 ops/s
+Iteration   1: 9,267 ops/s
+Iteration   2: 9,140 ops/s
+Iteration   3: 9,304 ops/s
+Iteration   4: 9,245 ops/s
+Iteration   5: 9,298 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancing":
+  9,251 ±(99.9%) 0,257 ops/s [Average]
+  (min, avg, max) = (9,140, 9,251, 9,304), stdev = 0,067
+  CI (99.9%): [8,994, 9,507] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancing
+# Parameters: (messageSize = large)
+
+# Run progress: 2,50% complete, ETA 00:07:49
+# Fork: 1 of 1
+# Warmup Iteration   1: 4,595 ops/s
+# Warmup Iteration   2: 8,884 ops/s
+Iteration   1: 9,175 ops/s
+Iteration   2: 9,000 ops/s
+Iteration   3: 9,186 ops/s
+Iteration   4: 9,371 ops/s
+Iteration   5: 9,311 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancing":
+  9,209 ±(99.9%) 0,552 ops/s [Average]
+  (min, avg, max) = (9,000, 9,209, 9,371), stdev = 0,143
+  CI (99.9%): [8,656, 9,761] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers
+# Parameters: (messageSize = small)
+
+# Run progress: 5,00% complete, ETA 00:15:58
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,758 ops/s
+# Warmup Iteration   2: 2,925 ops/s
+Iteration   1: 2,947 ops/s
+Iteration   2: 2,957 ops/s
+Iteration   3: 2,957 ops/s
+Iteration   4: 2,946 ops/s
+Iteration   5: 2,949 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers":
+  2,951 ±(99.9%) 0,022 ops/s [Average]
+  (min, avg, max) = (2,946, 2,951, 2,957), stdev = 0,006
+  CI (99.9%): [2,930, 2,973] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers
+# Parameters: (messageSize = large)
+
+# Run progress: 7,50% complete, ETA 00:18:11
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,727 ops/s
+# Warmup Iteration   2: 2,924 ops/s
+Iteration   1: 2,949 ops/s
+Iteration   2: 2,946 ops/s
+Iteration   3: 2,946 ops/s
+Iteration   4: 2,947 ops/s
+Iteration   5: 2,944 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers":
+  2,946 ±(99.9%) 0,006 ops/s [Average]
+  (min, avg, max) = (2,944, 2,946, 2,949), stdev = 0,002
+  CI (99.9%): [2,940, 2,952] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers
+# Parameters: (messageSize = small)
+
+# Run progress: 10,00% complete, ETA 00:16:19
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,714 ops/s
+# Warmup Iteration   2: 2,937 ops/s
+Iteration   1: 2,946 ops/s
+Iteration   2: 2,945 ops/s
+Iteration   3: 2,954 ops/s
+Iteration   4: 2,950 ops/s
+Iteration   5: 2,948 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers":
+  2,949 ±(99.9%) 0,014 ops/s [Average]
+  (min, avg, max) = (2,945, 2,949, 2,954), stdev = 0,004
+  CI (99.9%): [2,935, 2,962] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers
+# Parameters: (messageSize = large)
+
+# Run progress: 12,50% complete, ETA 00:17:57
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,730 ops/s
+# Warmup Iteration   2: 2,921 ops/s
+Iteration   1: 2,949 ops/s
+Iteration   2: 2,952 ops/s
+Iteration   3: 2,952 ops/s
+Iteration   4: 2,946 ops/s
+Iteration   5: 2,945 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers":
+  2,949 ±(99.9%) 0,013 ops/s [Average]
+  (min, avg, max) = (2,945, 2,949, 2,952), stdev = 0,003
+  CI (99.9%): [2,935, 2,962] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration
+# Parameters: (messageSize = small)
+
+# Run progress: 15,00% complete, ETA 00:18:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 4,931 ops/s
+# Warmup Iteration   2: 9,237 ops/s
+Iteration   1: 9,144 ops/s
+Iteration   2: 9,277 ops/s
+Iteration   3: 9,281 ops/s
+Iteration   4: 9,252 ops/s
+Iteration   5: 9,295 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration":
+  9,250 ±(99.9%) 0,235 ops/s [Average]
+  (min, avg, max) = (9,144, 9,250, 9,295), stdev = 0,061
+  CI (99.9%): [9,015, 9,485] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration
+# Parameters: (messageSize = large)
+
+# Run progress: 17,50% complete, ETA 00:18:37
+# Fork: 1 of 1
+# Warmup Iteration   1: 4,924 ops/s
+# Warmup Iteration   2: 9,080 ops/s
+Iteration   1: 9,264 ops/s
+Iteration   2: 9,288 ops/s
+Iteration   3: 9,274 ops/s
+Iteration   4: 9,297 ops/s
+Iteration   5: 9,286 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration":
+  9,282 ±(99.9%) 0,049 ops/s [Average]
+  (min, avg, max) = (9,264, 9,282, 9,297), stdev = 0,013
+  CI (99.9%): [9,232, 9,331] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testStress
+# Parameters: (messageSize = small)
+
+# Run progress: 20,00% complete, ETA 00:18:21
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,640 ops/s
+# Warmup Iteration   2: 0,882 ops/s
+Iteration   1: 0,890 ops/s
+Iteration   2: 0,902 ops/s
+Iteration   3: 0,902 ops/s
+Iteration   4: 0,902 ops/s
+Iteration   5: 0,867 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testStress":
+  0,893 ±(99.9%) 0,058 ops/s [Average]
+  (min, avg, max) = (0,867, 0,893, 0,902), stdev = 0,015
+  CI (99.9%): [0,835, 0,950] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testStress
+# Parameters: (messageSize = large)
+
+# Run progress: 22,50% complete, ETA 00:18:39
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,613 ops/s
+# Warmup Iteration   2: 0,884 ops/s
+Iteration   1: 0,888 ops/s
+Iteration   2: 0,890 ops/s
+Iteration   3: 0,901 ops/s
+Iteration   4: 0,893 ops/s
+Iteration   5: 0,903 ops/s
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testStress":
+  0,895 ±(99.9%) 0,025 ops/s [Average]
+  (min, avg, max) = (0,888, 0,895, 0,903), stdev = 0,007
+  CI (99.9%): [0,869, 0,920] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage
+
+# Run progress: 25,00% complete, ETA 00:18:29
+# Fork: 1 of 1
+# Warmup Iteration   1: 4,725 ops/s
+# Warmup Iteration   2: 5,556 ops/s
+Iteration   1: 5,924 ops/s
+Iteration   2: 5,945 ops/s
+Iteration   3: 6,081 ops/s
+Iteration   4: 6,170 ops/s
+Iteration   5: 5,766 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage":
+  5,977 ±(99.9%) 0,597 ops/s [Average]
+  (min, avg, max) = (5,766, 5,977, 6,170), stdev = 0,155
+  CI (99.9%): [5,380, 6,574] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage
+
+# Run progress: 27,50% complete, ETA 00:16:49
+# Fork: 1 of 1
+# Warmup Iteration   1: 16,551 ops/s
+# Warmup Iteration   2: 20,969 ops/s
+Iteration   1: 20,250 ops/s
+Iteration   2: 21,939 ops/s
+Iteration   3: 21,718 ops/s
+Iteration   4: 22,744 ops/s
+Iteration   5: 22,300 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage":
+  21,790 ±(99.9%) 3,638 ops/s [Average]
+  (min, avg, max) = (20,250, 21,790, 22,744), stdev = 0,945
+  CI (99.9%): [18,153, 25,428] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage
+
+# Run progress: 30,00% complete, ETA 00:15:11
+# Fork: 1 of 1
+# Warmup Iteration   1: 5,312 ops/s
+# Warmup Iteration   2: 6,091 ops/s
+Iteration   1: 6,323 ops/s
+Iteration   2: 6,351 ops/s
+Iteration   3: 6,481 ops/s
+Iteration   4: 6,080 ops/s
+Iteration   5: 5,161 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage":
+  6,079 ±(99.9%) 2,054 ops/s [Average]
+  (min, avg, max) = (5,161, 6,079, 6,481), stdev = 0,533
+  CI (99.9%): [4,026, 8,133] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage
+
+# Run progress: 32,50% complete, ETA 00:13:59
+# Fork: 1 of 1
+# Warmup Iteration   1: 16,466 ops/s
+# Warmup Iteration   2: 24,539 ops/s
+Iteration   1: 24,002 ops/s
+Iteration   2: 21,322 ops/s
+Iteration   3: 22,541 ops/s
+Iteration   4: 24,237 ops/s
+Iteration   5: 24,843 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage":
+  23,389 ±(99.9%) 5,513 ops/s [Average]
+  (min, avg, max) = (21,322, 23,389, 24,843), stdev = 1,432
+  CI (99.9%): [17,876, 28,902] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage
+
+# Run progress: 35,00% complete, ETA 00:12:54
+# Fork: 1 of 1
+# Warmup Iteration   1: 4,918 ops/s
+# Warmup Iteration   2: 4,521 ops/s
+Iteration   1: 5,780 ops/s
+Iteration   2: 5,502 ops/s
+Iteration   3: 5,437 ops/s
+Iteration   4: 5,846 ops/s
+Iteration   5: 5,455 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage":
+  5,604 ±(99.9%) 0,745 ops/s [Average]
+  (min, avg, max) = (5,437, 5,604, 5,846), stdev = 0,194
+  CI (99.9%): [4,859, 6,349] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage
+
+# Run progress: 37,50% complete, ETA 00:11:56
+# Fork: 1 of 1
+# Warmup Iteration   1: 17,044 ops/s
+# Warmup Iteration   2: 22,148 ops/s
+Iteration   1: 20,929 ops/s
+Iteration   2: 20,304 ops/s
+Iteration   3: 21,770 ops/s
+Iteration   4: 21,886 ops/s
+Iteration   5: 20,977 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage":
+  21,173 ±(99.9%) 2,523 ops/s [Average]
+  (min, avg, max) = (20,304, 21,173, 21,886), stdev = 0,655
+  CI (99.9%): [18,650, 23,697] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage
+
+# Run progress: 40,00% complete, ETA 00:10:56
+# Fork: 1 of 1
+# Warmup Iteration   1: 4,755 ops/s
+# Warmup Iteration   2: 5,546 ops/s
+Iteration   1: 6,262 ops/s
+Iteration   2: 6,141 ops/s
+Iteration   3: 6,359 ops/s
+Iteration   4: 6,144 ops/s
+Iteration   5: 6,355 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage":
+  6,252 ±(99.9%) 0,413 ops/s [Average]
+  (min, avg, max) = (6,141, 6,252, 6,359), stdev = 0,107
+  CI (99.9%): [5,839, 6,665] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage
+
+# Run progress: 42,50% complete, ETA 00:10:09
+# Fork: 1 of 1
+# Warmup Iteration   1: 17,675 ops/s
+# Warmup Iteration   2: 24,941 ops/s
+Iteration   1: 23,730 ops/s
+Iteration   2: 22,713 ops/s
+Iteration   3: 22,541 ops/s
+Iteration   4: 23,680 ops/s
+Iteration   5: 25,274 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage":
+  23,588 ±(99.9%) 4,189 ops/s [Average]
+  (min, avg, max) = (22,541, 23,588, 25,274), stdev = 1,088
+  CI (99.9%): [19,399, 27,776] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage
+
+# Run progress: 45,00% complete, ETA 00:09:20
+# Fork: 1 of 1
+# Warmup Iteration   1: 4,923 ops/s
+# Warmup Iteration   2: 4,755 ops/s
+Iteration   1: 5,595 ops/s
+Iteration   2: 5,789 ops/s
+Iteration   3: 4,359 ops/s
+Iteration   4: 5,843 ops/s
+Iteration   5: 5,377 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage":
+  5,393 ±(99.9%) 2,334 ops/s [Average]
+  (min, avg, max) = (4,359, 5,393, 5,843), stdev = 0,606
+  CI (99.9%): [3,059, 7,726] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage
+
+# Run progress: 47,50% complete, ETA 00:08:35
+# Fork: 1 of 1
+# Warmup Iteration   1: 14,218 ops/s
+# Warmup Iteration   2: 17,340 ops/s
+Iteration   1: 19,309 ops/s
+Iteration   2: 19,008 ops/s
+Iteration   3: 18,576 ops/s
+Iteration   4: 18,932 ops/s
+Iteration   5: 17,636 ops/s
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage":
+  18,692 ±(99.9%) 2,486 ops/s [Average]
+  (min, avg, max) = (17,636, 18,692, 19,309), stdev = 0,646
+  CI (99.9%): [16,206, 21,178] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancing
+# Parameters: (messageSize = small)
+
+# Run progress: 50,00% complete, ETA 00:07:53
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,181 s/op
+# Warmup Iteration   2: 0,108 s/op
+Iteration   1: 0,108 s/op
+Iteration   2: 0,108 s/op
+Iteration   3: 0,108 s/op
+Iteration   4: 0,108 s/op
+Iteration   5: 0,108 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancing":
+  0,108 ±(99.9%) 0,001 s/op [Average]
+  (min, avg, max) = (0,108, 0,108, 0,108), stdev = 0,001
+  CI (99.9%): [0,107, 0,109] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancing
+# Parameters: (messageSize = large)
+
+# Run progress: 52,50% complete, ETA 00:07:43
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,209 s/op
+# Warmup Iteration   2: 0,112 s/op
+Iteration   1: 0,108 s/op
+Iteration   2: 0,109 s/op
+Iteration   3: 0,108 s/op
+Iteration   4: 0,108 s/op
+Iteration   5: 0,108 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancing":
+  0,108 ±(99.9%) 0,002 s/op [Average]
+  (min, avg, max) = (0,108, 0,108, 0,109), stdev = 0,001
+  CI (99.9%): [0,106, 0,110] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers
+# Parameters: (messageSize = small)
+
+# Run progress: 55,00% complete, ETA 00:07:08
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,549 s/op
+# Warmup Iteration   2: 0,342 s/op
+Iteration   1: 0,339 s/op
+Iteration   2: 0,338 s/op
+Iteration   3: 0,339 s/op
+Iteration   4: 0,339 s/op
+Iteration   5: 0,339 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers":
+  0,339 ±(99.9%) 0,002 s/op [Average]
+  (min, avg, max) = (0,338, 0,339, 0,339), stdev = 0,001
+  CI (99.9%): [0,337, 0,341] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers
+# Parameters: (messageSize = large)
+
+# Run progress: 57,50% complete, ETA 00:07:03
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,583 s/op
+# Warmup Iteration   2: 0,341 s/op
+Iteration   1: 0,339 s/op
+Iteration   2: 0,339 s/op
+Iteration   3: 0,339 s/op
+Iteration   4: 0,338 s/op
+Iteration   5: 0,338 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers":
+  0,339 ±(99.9%) 0,002 s/op [Average]
+  (min, avg, max) = (0,338, 0,339, 0,339), stdev = 0,001
+  CI (99.9%): [0,337, 0,341] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers
+# Parameters: (messageSize = small)
+
+# Run progress: 60,00% complete, ETA 00:06:51
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,577 s/op
+# Warmup Iteration   2: 0,342 s/op
+Iteration   1: 0,339 s/op
+Iteration   2: 0,339 s/op
+Iteration   3: 0,339 s/op
+Iteration   4: 0,340 s/op
+Iteration   5: 0,339 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers":
+  0,339 ±(99.9%) 0,002 s/op [Average]
+  (min, avg, max) = (0,339, 0,339, 0,340), stdev = 0,001
+  CI (99.9%): [0,338, 0,341] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers
+# Parameters: (messageSize = large)
+
+# Run progress: 62,50% complete, ETA 00:06:37
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,576 s/op
+# Warmup Iteration   2: 0,342 s/op
+Iteration   1: 0,339 s/op
+Iteration   2: 0,339 s/op
+Iteration   3: 0,340 s/op
+Iteration   4: 0,339 s/op
+Iteration   5: 0,340 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers":
+  0,339 ±(99.9%) 0,001 s/op [Average]
+  (min, avg, max) = (0,339, 0,339, 0,340), stdev = 0,001
+  CI (99.9%): [0,338, 0,341] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration
+# Parameters: (messageSize = small)
+
+# Run progress: 65,00% complete, ETA 00:06:21
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,212 s/op
+# Warmup Iteration   2: 0,109 s/op
+Iteration   1: 0,108 s/op
+Iteration   2: 0,108 s/op
+Iteration   3: 0,108 s/op
+Iteration   4: 0,108 s/op
+Iteration   5: 0,108 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration":
+  0,108 ±(99.9%) 0,001 s/op [Average]
+  (min, avg, max) = (0,108, 0,108, 0,108), stdev = 0,001
+  CI (99.9%): [0,107, 0,109] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration
+# Parameters: (messageSize = large)
+
+# Run progress: 67,50% complete, ETA 00:05:59
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,181 s/op
+# Warmup Iteration   2: 0,108 s/op
+Iteration   1: 0,108 s/op
+Iteration   2: 0,108 s/op
+Iteration   3: 0,108 s/op
+Iteration   4: 0,108 s/op
+Iteration   5: 0,108 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration":
+  0,108 ±(99.9%) 0,001 s/op [Average]
+  (min, avg, max) = (0,108, 0,108, 0,108), stdev = 0,001
+  CI (99.9%): [0,107, 0,109] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testStress
+# Parameters: (messageSize = small)
+
+# Run progress: 70,00% complete, ETA 00:05:36
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,608 s/op
+# Warmup Iteration   2: 1,131 s/op
+Iteration   1: 1,125 s/op
+Iteration   2: 1,123 s/op
+Iteration   3: 1,126 s/op
+Iteration   4: 1,112 s/op
+Iteration   5: 1,125 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testStress":
+  1,122 ±(99.9%) 0,023 s/op [Average]
+  (min, avg, max) = (1,112, 1,122, 1,126), stdev = 0,006
+  CI (99.9%): [1,099, 1,146] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.kafka.benchmarks.KafkaBenchmark.testStress
+# Parameters: (messageSize = large)
+
+# Run progress: 72,50% complete, ETA 00:05:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,599 s/op
+# Warmup Iteration   2: 1,132 s/op
+Iteration   1: 1,128 s/op
+Iteration   2: 1,123 s/op
+Iteration   3: 1,110 s/op
+Iteration   4: 1,112 s/op
+Iteration   5: 1,112 s/op
+
+
+Result "org.tbank.kafka.benchmarks.KafkaBenchmark.testStress":
+  1,117 ±(99.9%) 0,031 s/op [Average]
+  (min, avg, max) = (1,110, 1,117, 1,128), stdev = 0,008
+  CI (99.9%): [1,086, 1,148] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage
+
+# Run progress: 75,00% complete, ETA 00:04:52
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,205 s/op
+# Warmup Iteration   2: 0,179 s/op
+Iteration   1: 0,164 s/op
+Iteration   2: 0,160 s/op
+Iteration   3: 0,160 s/op
+Iteration   4: 0,166 s/op
+Iteration   5: 0,167 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage":
+  0,164 ±(99.9%) 0,012 s/op [Average]
+  (min, avg, max) = (0,160, 0,164, 0,167), stdev = 0,003
+  CI (99.9%): [0,152, 0,176] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage
+
+# Run progress: 77,50% complete, ETA 00:04:18
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,060 s/op
+# Warmup Iteration   2: 0,049 s/op
+Iteration   1: 0,048 s/op
+Iteration   2: 0,046 s/op
+Iteration   3: 0,047 s/op
+Iteration   4: 0,044 s/op
+Iteration   5: 0,044 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage":
+  0,046 ±(99.9%) 0,006 s/op [Average]
+  (min, avg, max) = (0,044, 0,046, 0,048), stdev = 0,002
+  CI (99.9%): [0,039, 0,052] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage
+
+# Run progress: 80,00% complete, ETA 00:03:44
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,179 s/op
+# Warmup Iteration   2: 0,164 s/op
+Iteration   1: 0,155 s/op
+Iteration   2: 0,178 s/op
+Iteration   3: 0,159 s/op
+Iteration   4: 0,161 s/op
+Iteration   5: 0,161 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage":
+  0,163 ±(99.9%) 0,034 s/op [Average]
+  (min, avg, max) = (0,155, 0,163, 0,178), stdev = 0,009
+  CI (99.9%): [0,129, 0,196] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage
+
+# Run progress: 82,50% complete, ETA 00:03:12
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,057 s/op
+# Warmup Iteration   2: 0,042 s/op
+Iteration   1: 0,045 s/op
+Iteration   2: 0,046 s/op
+Iteration   3: 0,047 s/op
+Iteration   4: 0,043 s/op
+Iteration   5: 0,041 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage":
+  0,045 ±(99.9%) 0,009 s/op [Average]
+  (min, avg, max) = (0,041, 0,045, 0,047), stdev = 0,002
+  CI (99.9%): [0,035, 0,054] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage
+
+# Run progress: 85,00% complete, ETA 00:02:42
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,227 s/op
+# Warmup Iteration   2: 0,177 s/op
+Iteration   1: 0,164 s/op
+Iteration   2: 0,173 s/op
+Iteration   3: 0,181 s/op
+Iteration   4: 0,160 s/op
+Iteration   5: 0,169 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage":
+  0,169 ±(99.9%) 0,032 s/op [Average]
+  (min, avg, max) = (0,160, 0,169, 0,181), stdev = 0,008
+  CI (99.9%): [0,138, 0,201] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage
+
+# Run progress: 87,50% complete, ETA 00:02:13
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,060 s/op
+# Warmup Iteration   2: 0,048 s/op
+Iteration   1: 0,049 s/op
+Iteration   2: 0,046 s/op
+Iteration   3: 0,045 s/op
+Iteration   4: 0,043 s/op
+Iteration   5: 0,046 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage":
+  0,046 ±(99.9%) 0,008 s/op [Average]
+  (min, avg, max) = (0,043, 0,046, 0,049), stdev = 0,002
+  CI (99.9%): [0,037, 0,054] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage
+
+# Run progress: 90,00% complete, ETA 00:01:44
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,179 s/op
+# Warmup Iteration   2: 0,172 s/op
+Iteration   1: 0,163 s/op
+Iteration   2: 0,154 s/op
+Iteration   3: 0,170 s/op
+Iteration   4: 0,198 s/op
+Iteration   5: 0,188 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage":
+  0,175 ±(99.9%) 0,069 s/op [Average]
+  (min, avg, max) = (0,154, 0,175, 0,198), stdev = 0,018
+  CI (99.9%): [0,105, 0,244] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage
+
+# Run progress: 92,50% complete, ETA 00:01:17
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,061 s/op
+# Warmup Iteration   2: 0,043 s/op
+Iteration   1: 0,041 s/op
+Iteration   2: 0,046 s/op
+Iteration   3: 0,041 s/op
+Iteration   4: 0,042 s/op
+Iteration   5: 0,041 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage":
+  0,042 ±(99.9%) 0,009 s/op [Average]
+  (min, avg, max) = (0,041, 0,042, 0,046), stdev = 0,002
+  CI (99.9%): [0,034, 0,051] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage
+
+# Run progress: 95,00% complete, ETA 00:00:50
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,224 s/op
+# Warmup Iteration   2: 0,185 s/op
+Iteration   1: 0,177 s/op
+Iteration   2: 0,170 s/op
+Iteration   3: 0,194 s/op
+Iteration   4: 0,157 s/op
+Iteration   5: 0,164 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage":
+  0,172 ±(99.9%) 0,054 s/op [Average]
+  (min, avg, max) = (0,157, 0,172, 0,194), stdev = 0,014
+  CI (99.9%): [0,118, 0,226] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.13, OpenJDK 64-Bit Server VM, 17.0.13+11-Ubuntu-2ubuntu122.04
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dorg.slf4j.simpleLogger.log.kafka=warn -Dorg.slf4j.simpleLogger.log.org.apache.kafka=warn -Dfile.encoding=UTF-8 -Duser.country=RU -Duser.language=ru -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 5 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage
+
+# Run progress: 97,50% complete, ETA 00:00:24
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,071 s/op
+# Warmup Iteration   2: 0,055 s/op
+Iteration   1: 0,053 s/op
+Iteration   2: 0,051 s/op
+Iteration   3: 0,052 s/op
+Iteration   4: 0,051 s/op
+Iteration   5: 0,049 s/op
+
+
+Result "org.tbank.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage":
+  0,051 ±(99.9%) 0,005 s/op [Average]
+  (min, avg, max) = (0,049, 0,051, 0,053), stdev = 0,001
+  CI (99.9%): [0,046, 0,056] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:16:26
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                                                                    (messageSize)   Mode  Cnt   Score   Error  Units
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancing                                                small  thrpt    5   9,251 ± 0,257  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancing                                                large  thrpt    5   9,209 ± 0,552  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers                           small  thrpt    5   2,951 ± 0,022  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers                           large  thrpt    5   2,946 ± 0,006  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers                                            small  thrpt    5   2,949 ± 0,014  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers                                            large  thrpt    5   2,949 ± 0,013  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration                                          small  thrpt    5   9,250 ± 0,235  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration                                          large  thrpt    5   9,282 ± 0,049  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testStress                                                       small  thrpt    5   0,893 ± 0,058  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testStress                                                       large  thrpt    5   0,895 ± 0,025  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage            N/A  thrpt    5   5,977 ± 0,597  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage            N/A  thrpt    5  21,790 ± 3,638  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage              N/A  thrpt    5   6,079 ± 2,054  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage              N/A  thrpt    5  23,389 ± 5,513  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage              N/A  thrpt    5   5,604 ± 0,745  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage              N/A  thrpt    5  21,173 ± 2,523  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage                 N/A  thrpt    5   6,252 ± 0,413  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage                 N/A  thrpt    5  23,588 ± 4,189  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage                               N/A  thrpt    5   5,393 ± 2,334  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage                               N/A  thrpt    5  18,692 ± 2,486  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancing                                                small   avgt    5   0,108 ± 0,001   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancing                                                large   avgt    5   0,108 ± 0,002   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers                           small   avgt    5   0,339 ± 0,002   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers                           large   avgt    5   0,339 ± 0,002   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers                                            small   avgt    5   0,339 ± 0,002   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers                                            large   avgt    5   0,339 ± 0,001   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration                                          small   avgt    5   0,108 ± 0,001   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration                                          large   avgt    5   0,108 ± 0,001   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testStress                                                       small   avgt    5   1,122 ± 0,023   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testStress                                                       large   avgt    5   1,117 ± 0,031   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage            N/A   avgt    5   0,164 ± 0,012   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage            N/A   avgt    5   0,046 ± 0,006   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage              N/A   avgt    5   0,163 ± 0,034   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage              N/A   avgt    5   0,045 ± 0,009   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage              N/A   avgt    5   0,169 ± 0,032   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage              N/A   avgt    5   0,046 ± 0,008   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage                 N/A   avgt    5   0,175 ± 0,069   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage                 N/A   avgt    5   0,042 ± 0,009   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage                               N/A   avgt    5   0,172 ± 0,054   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage                               N/A   avgt    5   0,051 ± 0,005   s/op

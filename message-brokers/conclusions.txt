@@ -1,0 +1,59 @@
+Kafka:
+
+Множественные продюсеры и консумеры в конфигурации Kafka показывают хорошие результаты по производительности благодаря тому, что эта система изначально спроектирована как распределённая.
+В ходе тестов с большим количеством продюсеров и консумеров Kafka демонстрирует высокие показатели эффективности, поскольку используется партиционирование данных.
+Архитектур Kafka позволяют масштабировать её: добавлять новых потребителей и отправителей без значительных потерь в производительности.
+Но с увеличением числа консумеров время отклика начинает расти.
+Возможно, это происходит потому, что Kafka не устанавливает прямую связь между продюсером и консумером, полагаясь на распределение данных по партициям, и это может вызвать задержки под высокой нагрузкой.
+Скорее всего, такие результаты получились из-за "синтетического теста". Если хорошо настроить систему, такого, возможно, не будет.
+
+RabbitMQ:
+
+RabbitMQ работает на базе модели очередей с центральным брокером, что может привести к снижению эффективности при повышенных нагрузках.
+Архитертура RabbitMQ обеспечивает отличную производительность в условиях незначительных объемов данных и небольшого количества консумеров, т.к. позволяет быстро доставлять все сообщения.
+В тестах с небольшими сообщениями RabbitMQ демонстрирует высокий throughput, т.к. её модель лучше адаптирована для работы с мелкими нагрузками.
+Но при увеличении объёмов сообщений, а также в конфигурациях с несколькими продюсерами и крупными сообщениями RabbitMQ, она уступает Kafka.
+Возможно, это из-за того, что RabbitMQ использует однофазную обработку сообщений, хотя, из-за такого "синтетического теста", мои выводы могут оказаться не совсем точными.
+
+
+Benchmark                                                                                    (messageSize)   Mode  Cnt   Score   Error  Units
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancing                                                small  thrpt    5   9,251 ± 0,257  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancing                                                large  thrpt    5   9,209 ± 0,552  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers                           small  thrpt    5   2,951 ± 0,022  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers                           large  thrpt    5   2,946 ± 0,006  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers                                            small  thrpt    5   2,949 ± 0,014  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers                                            large  thrpt    5   2,949 ± 0,013  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration                                          small  thrpt    5   9,250 ± 0,235  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration                                          large  thrpt    5   9,282 ± 0,049  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testStress                                                       small  thrpt    5   0,893 ± 0,058  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testStress                                                       large  thrpt    5   0,895 ± 0,025  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage            N/A  thrpt    5   5,977 ± 0,597  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage            N/A  thrpt    5  21,790 ± 3,638  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage              N/A  thrpt    5   6,079 ± 2,054  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage              N/A  thrpt    5  23,389 ± 5,513  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage              N/A  thrpt    5   5,604 ± 0,745  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage              N/A  thrpt    5  21,173 ± 2,523  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage                 N/A  thrpt    5   6,252 ± 0,413  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage                 N/A  thrpt    5  23,588 ± 4,189  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage                               N/A  thrpt    5   5,393 ± 2,334  ops/s
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage                               N/A  thrpt    5  18,692 ± 2,486  ops/s
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancing                                                small   avgt    5   0,108 ± 0,001   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancing                                                large   avgt    5   0,108 ± 0,002   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers                           small   avgt    5   0,339 ± 0,002   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testLoadBalancingWithMultipleConsumers                           large   avgt    5   0,339 ± 0,002   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers                                            small   avgt    5   0,339 ± 0,002   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testMultipleConsumers                                            large   avgt    5   0,339 ± 0,001   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration                                          small   avgt    5   0,108 ± 0,001   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testSimpleConfiguration                                          large   avgt    5   0,108 ± 0,001   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testStress                                                       small   avgt    5   1,122 ± 0,023   s/op
+o.t.kafka.benchmarks.KafkaBenchmark.testStress                                                       large   avgt    5   1,117 ± 0,031   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersLargeMessage            N/A   avgt    5   0,164 ± 0,012   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducerMultipleConsumersSmallMessage            N/A   avgt    5   0,046 ± 0,006   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerLargeMessage              N/A   avgt    5   0,163 ± 0,034   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testMultipleProducersSingleConsumerSmallMessage              N/A   avgt    5   0,045 ± 0,009   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersLargeMessage              N/A   avgt    5   0,169 ± 0,032   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerMultipleConsumersSmallMessage              N/A   avgt    5   0,046 ± 0,008   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerLargeMessage                 N/A   avgt    5   0,175 ± 0,069   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testSingleProducerSingleConsumerSmallMessage                 N/A   avgt    5   0,042 ± 0,009   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithLargeMessage                               N/A   avgt    5   0,172 ± 0,054   s/op
+o.t.rabbitmq.benchmarks.RabbitMQBenchmark.testStressTestWithSmallMessage                               N/A   avgt    5   0,051 ± 0,005   s/op
